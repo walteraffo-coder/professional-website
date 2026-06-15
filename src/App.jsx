@@ -71,10 +71,10 @@ const PRODUCTS = [
     status: 'Available',
     body: 'Intensely sweet, natural sweet-tasting protein for sugar reduction and flavour enhancement in food and beverage applications.',
     photos: [
-      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested katemfe (Thaumatococcus daniellii) fruits' },
-      { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils' },
-      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril' },
-      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)' },
+      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested katemfe (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
+      { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils', caption: 'Arils' },
+      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril', caption: 'Seed with aril' },
+      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)', caption: 'Seed & aril, separated' },
     ],
   },
   {
@@ -482,13 +482,17 @@ function App() {
                   {product.photos ? (
                     <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
                       {product.photos.map((image) => (
-                        <img
-                          key={image.src}
-                          src={image.src}
-                          alt={image.alt}
-                          loading="lazy"
-                          className="h-24 w-full object-cover"
-                        />
+                        <figure key={image.src} className="bg-white">
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            loading="lazy"
+                            className="h-24 w-full object-cover"
+                          />
+                          <figcaption className="px-2 py-1.5 text-center text-xs text-stone-500">
+                            {image.caption ?? image.alt}
+                          </figcaption>
+                        </figure>
                       ))}
                     </div>
                   ) : product.photo ? (
