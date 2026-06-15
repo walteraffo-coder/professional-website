@@ -70,6 +70,11 @@ const PRODUCTS = [
     tag: 'Bulk extract',
     status: 'Available',
     wide: true,
+    sideImages: [
+      { src: '/images/s-dulcificum-fruits.jpeg', alt: 'Synsepalum dulcificum fruits on the branch', caption: 'S. dulcificum fruits' },
+      { src: '/images/s-dulcificum-fresh-berries.jpeg', alt: 'Freshly harvested miracle berries', caption: 'Fresh miracle berries' },
+      { src: '/images/miraculin-powder.jpeg', alt: 'Miraculin powder extracted from the fruit', caption: 'Miraculin powder' },
+    ],
     body: [
       'Miraculin is a taste-modifying glycoprotein extracted from the fruit of Synsepalum dulcificum (Miracle Berry). It works by binding to taste receptors on the tongue, temporarily converting sour and acidic tastes into sweetness for up to 90 minutes — without adding any sugar or calories.',
       'Beyond taste modification, miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center, where it has shown promise in masking the metallic taste (“metal-mouth”) experienced by chemotherapy patients — restoring normal food enjoyment during treatment.',
@@ -507,7 +512,7 @@ function App() {
                   key={product.name}
                   className={`flex overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md${
                     product.wide ? ' sm:col-span-2' : ''
-                  }${product.sideImage ? ' flex-col md:flex-row' : ' flex-col'}`}
+                  }${product.sideImages ? ' flex-col md:flex-row' : ' flex-col'}`}
                 >
                   <div className="flex min-w-0 flex-1 flex-col p-7">
                     {product.photos ? (
@@ -580,14 +585,21 @@ function App() {
                       </a>
                     </div>
                   </div>
-                  {product.sideImage && (
-                    <div className="md:w-2/5 md:flex-none">
-                      <img
-                        src={product.sideImage.src}
-                        alt={product.sideImage.alt}
-                        loading="lazy"
-                        className="h-56 w-full object-cover md:h-full"
-                      />
+                  {product.sideImages && (
+                    <div className="grid grid-cols-3 gap-px bg-stone-200 md:w-2/5 md:flex-none md:grid-cols-1">
+                      {product.sideImages.map((image) => (
+                        <figure key={image.src} className="bg-white">
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            loading="lazy"
+                            className="h-32 w-full object-cover sm:h-40 md:h-36"
+                          />
+                          <figcaption className="px-2 py-1.5 text-center text-xs text-stone-500">
+                            {image.caption ?? image.alt}
+                          </figcaption>
+                        </figure>
+                      ))}
                     </div>
                   )}
                 </article>
