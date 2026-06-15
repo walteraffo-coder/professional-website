@@ -472,6 +472,27 @@ function App() {
                 Bulk extracts, raw materials and finished natural products. Need
                 a specification sheet or sample? Send an enquiry.
               </p>
+              <div className="mt-8 flex justify-center">
+                <a
+                  href="/product-catalogue.pdf"
+                  download
+                  className="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-700 shadow-sm transition-colors hover:bg-stone-50"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M10 3v10m0 0 4-4m-4 4-4-4M4 16h12" />
+                  </svg>
+                  Download product catalogue
+                </a>
+              </div>
             </div>
             <div className="mt-14 grid gap-6 sm:grid-cols-2">
               {PRODUCTS.map((product) => (
