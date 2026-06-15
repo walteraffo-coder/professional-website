@@ -98,10 +98,30 @@ const PRODUCTS = [
     ],
     photos: [
       { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested Asowa (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
-      { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils', caption: 'Arils' },
-      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril', caption: 'Seed with aril' },
-      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)', caption: 'Seed & aril, separated' },
+      { src: '/images/t-danielli-arils.jpeg', alt: 'Asowa arils', caption: 'Arils' },
+      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Asowa seed with aril', caption: 'Seed with aril' },
+      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Asowa seed (black) and aril (white)', caption: 'Seed & aril, separated' },
     ],
+  },
+  {
+    name: 'Voacanga africana',
+    source: 'Voacanga africana (Wild Frangipani)',
+    tag: 'Raw material',
+    status: 'Available for bulk enquiry',
+    body: [
+      'Voacanga africana is a West African tree with significant pharmaceutical value, yielding two distinct high-value alkaloid fractions from different plant parts.',
+      {
+        heading: 'Seeds — Tabersonine',
+        text: 'The seeds are rich in tabersonine, a key starting material in the synthesis of vincamine and vinpocetine — compounds widely used to support cerebral blood flow and cognitive function, with applications in nootropics and memory-support formulations.',
+      },
+      {
+        heading: 'Root Bark — Voacangine',
+        text: 'The root bark contains voacangine, a structural precursor to ibogaine — a clinically investigated compound for addiction interruption, particularly for opioid and stimulant dependency.',
+      },
+    ],
+    applications:
+      'Pharmaceutical synthesis, nootropic ingredient supply, addiction treatment research, alkaloid extraction.',
+    supplyForm: 'Dried seeds, root bark, crude alkaloid extract.',
   },
   {
     name: 'Custom Botanical Extracts',
@@ -565,9 +585,17 @@ function App() {
                       }`}
                     >
                       {(Array.isArray(product.body) ? product.body : [product.body]).map(
-                        (paragraph, index) => (
-                          <p key={index}>{paragraph}</p>
-                        ),
+                        (paragraph, index) =>
+                          typeof paragraph === 'string' ? (
+                            <p key={index}>{paragraph}</p>
+                          ) : (
+                            <div key={index}>
+                              <p className="font-semibold text-stone-900">
+                                {paragraph.heading}
+                              </p>
+                              <p className="mt-0.5">{paragraph.text}</p>
+                            </div>
+                          ),
                       )}
                       {product.applications &&
                         (Array.isArray(product.applications) ? (
@@ -591,6 +619,14 @@ function App() {
                             {product.applications}
                           </p>
                         ))}
+                      {product.supplyForm && (
+                        <p>
+                          <span className="font-semibold text-stone-900">
+                            Supply form:{' '}
+                          </span>
+                          {product.supplyForm}
+                        </p>
+                      )}
                     </div>
                     <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
                       <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
