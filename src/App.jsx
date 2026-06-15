@@ -82,7 +82,13 @@ const PRODUCTS = [
     source: 'Synsepalum dulcificum',
     tag: 'Bulk extract',
     status: 'Available',
-    body: 'Miraculin-rich taste-modifying glycoprotein that transforms sour to sweet — for novel food, nutraceutical and research uses.',
+    body: [
+      'Miraculin is a taste-modifying glycoprotein extracted from the fruit of Synsepalum dulcificum (Miracle Berry). It works by binding to taste receptors on the tongue, temporarily converting sour and acidic tastes into sweetness for up to 90 minutes — without adding any sugar or calories.',
+      'Beyond taste modification, miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center, where it has shown promise in masking the metallic taste (“metal-mouth”) experienced by chemotherapy patients — restoring normal food enjoyment during treatment.',
+      'The fruit powder is also rich in antioxidants, polyphenols and flavonoids, with demonstrated benefits in reducing oxidative stress and increasing insulin sensitivity — making it a candidate ingredient for diabetes management formulations.',
+    ],
+    applications:
+      'Natural taste modification, nutraceuticals, oncology support, anti-diabetic formulations, functional foods.',
   },
   {
     name: 'Custom Botanical Extracts',
@@ -537,9 +543,21 @@ function App() {
                       {product.tag}
                     </span>
                   </div>
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">
-                    {product.body}
-                  </p>
+                  <div className="mt-4 flex-1 space-y-3 text-sm leading-relaxed text-stone-600">
+                    {(Array.isArray(product.body) ? product.body : [product.body]).map(
+                      (paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ),
+                    )}
+                    {product.applications && (
+                      <p>
+                        <span className="font-semibold text-stone-900">
+                          Applications:{' '}
+                        </span>
+                        {product.applications}
+                      </p>
+                    )}
+                  </div>
                   <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
                     <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
                       <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
