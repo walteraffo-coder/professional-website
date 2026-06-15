@@ -505,75 +505,91 @@ function App() {
               {PRODUCTS.map((product) => (
                 <article
                   key={product.name}
-                  className={`flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md${
+                  className={`flex overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md${
                     product.wide ? ' sm:col-span-2' : ''
-                  }`}
+                  }${product.sideImage ? ' flex-col md:flex-row' : ' flex-col'}`}
                 >
-                  {product.photos ? (
-                    <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
-                      {product.photos.map((image) => (
-                        <figure key={image.src} className="bg-white">
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            loading="lazy"
-                            className="h-24 w-full object-cover"
-                          />
-                          <figcaption className="px-2 py-1.5 text-center text-xs text-stone-500">
-                            {image.caption ?? image.alt}
-                          </figcaption>
-                        </figure>
-                      ))}
+                  <div className="flex min-w-0 flex-1 flex-col p-7">
+                    {product.photos ? (
+                      <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
+                        {product.photos.map((image) => (
+                          <figure key={image.src} className="bg-white">
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              loading="lazy"
+                              className="h-24 w-full object-cover"
+                            />
+                            <figcaption className="px-2 py-1.5 text-center text-xs text-stone-500">
+                              {image.caption ?? image.alt}
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    ) : product.photo ? (
+                      <img
+                        src={product.photo}
+                        alt={product.photoAlt ?? product.name}
+                        loading="lazy"
+                        className="-mx-7 -mt-7 mb-6 h-48 w-full rounded-t-2xl object-cover"
+                      />
+                    ) : null}
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h3 className="text-lg font-semibold text-stone-900">
+                          {product.name}
+                        </h3>
+                        <p className="mt-0.5 text-sm italic text-stone-500">
+                          {product.source}
+                        </p>
+                      </div>
+                      <span className="shrink-0 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                        {product.tag}
+                      </span>
                     </div>
-                  ) : product.photo ? (
-                    <img
-                      src={product.photo}
-                      alt={product.photoAlt ?? product.name}
-                      loading="lazy"
-                      className="-mx-7 -mt-7 mb-6 h-48 w-full rounded-t-2xl object-cover"
-                    />
-                  ) : null}
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-stone-900">
-                        {product.name}
-                      </h3>
-                      <p className="mt-0.5 text-sm italic text-stone-500">
-                        {product.source}
-                      </p>
-                    </div>
-                    <span className="shrink-0 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                      {product.tag}
-                    </span>
-                  </div>
-                  <div className="mt-4 flex-1 space-y-3 text-sm leading-relaxed text-stone-600">
-                    {(Array.isArray(product.body) ? product.body : [product.body]).map(
-                      (paragraph, index) => (
-                        <p key={index}>{paragraph}</p>
-                      ),
-                    )}
-                    {product.applications && (
-                      <p>
-                        <span className="font-semibold text-stone-900">
-                          Applications:{' '}
-                        </span>
-                        {product.applications}
-                      </p>
-                    )}
-                  </div>
-                  <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
-                      <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
-                      {product.status}
-                    </span>
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-600"
+                    <div
+                      className={`mt-4 flex-1 space-y-3 text-sm leading-relaxed text-stone-600${
+                        product.wide ? ' max-w-3xl' : ''
+                      }`}
                     >
-                      Enquire
-                      <span aria-hidden="true">→</span>
-                    </a>
+                      {(Array.isArray(product.body) ? product.body : [product.body]).map(
+                        (paragraph, index) => (
+                          <p key={index}>{paragraph}</p>
+                        ),
+                      )}
+                      {product.applications && (
+                        <p>
+                          <span className="font-semibold text-stone-900">
+                            Applications:{' '}
+                          </span>
+                          {product.applications}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+                        {product.status}
+                      </span>
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-600"
+                      >
+                        Enquire
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
                   </div>
+                  {product.sideImage && (
+                    <div className="md:w-2/5 md:flex-none">
+                      <img
+                        src={product.sideImage.src}
+                        alt={product.sideImage.alt}
+                        loading="lazy"
+                        className="h-56 w-full object-cover md:h-full"
+                      />
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
