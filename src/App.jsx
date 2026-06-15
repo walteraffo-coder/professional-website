@@ -476,7 +476,7 @@ function App() {
                 <a
                   href="/product-catalogue.pdf"
                   download
-                  className="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-700 shadow-sm transition-colors hover:bg-stone-50"
+                  className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-500"
                 >
                   <svg
                     className="h-4 w-4"
