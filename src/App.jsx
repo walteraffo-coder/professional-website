@@ -85,7 +85,7 @@ const PRODUCTS = [
   },
   {
     name: 'Thaumatin',
-    source: 'Thaumatococcus daniellii (katemfe)',
+    source: 'Thaumatococcus daniellii (Asowa)',
     tag: 'Bulk extract',
     status: 'Available',
     body: 'Thaumatin is a natural sweet protein extracted from the fruit aril of Thaumatococcus daniellii. At approximately 2,000 times sweeter than sugar, it is one of the most potent natural sweeteners known.',
@@ -97,7 +97,7 @@ const PRODUCTS = [
       'Masks astringency and bitterness in low-fat yoghurt and soya-based desserts',
     ],
     photos: [
-      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested katemfe (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
+      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested Asowa (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
       { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils', caption: 'Arils' },
       { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril', caption: 'Seed with aril' },
       { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)', caption: 'Seed & aril, separated' },
