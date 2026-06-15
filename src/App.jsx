@@ -88,7 +88,14 @@ const PRODUCTS = [
     source: 'Thaumatococcus daniellii (katemfe)',
     tag: 'Bulk extract',
     status: 'Available',
-    body: 'Intensely sweet, natural sweet-tasting protein for sugar reduction and flavour enhancement in food and beverage applications.',
+    body: 'Thaumatin is a natural sweet protein extracted from the fruit aril of Thaumatococcus daniellii. At approximately 2,000 times sweeter than sugar, it is one of the most potent natural sweeteners known.',
+    applications: [
+      'Dairy and non-dairy products',
+      'Confectionery — hard candies, chocolates, and gummies (enhances mint, berry, and citrus flavours)',
+      'Combines with polyols and high-intensity sweeteners to deliver a sugar-like taste profile',
+      'Reduces salt perception in savoury products',
+      'Masks astringency and bitterness in low-fat yoghurt and soya-based desserts',
+    ],
     photos: [
       { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested katemfe (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
       { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils', caption: 'Arils' },
@@ -562,14 +569,26 @@ function App() {
                           <p key={index}>{paragraph}</p>
                         ),
                       )}
-                      {product.applications && (
-                        <p>
-                          <span className="font-semibold text-stone-900">
-                            Applications:{' '}
-                          </span>
-                          {product.applications}
-                        </p>
-                      )}
+                      {product.applications &&
+                        (Array.isArray(product.applications) ? (
+                          <div>
+                            <p className="font-semibold text-stone-900">
+                              Applications:
+                            </p>
+                            <ul className="mt-1.5 list-disc space-y-1 pl-5">
+                              {product.applications.map((item, index) => (
+                                <li key={index}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <p>
+                            <span className="font-semibold text-stone-900">
+                              Applications:{' '}
+                            </span>
+                            {product.applications}
+                          </p>
+                        ))}
                     </div>
                     <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
                       <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
