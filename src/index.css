@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Brand palette — warm, earthy tones for Farms & Extracts 46.
+   `brand` = muted olive / forest green (the primary).
+   `clay`  = terracotta accent for warmth.
+   These generate utilities like bg-brand-600, text-clay-500, border-brand-200.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-brand-50: #eef5ee;
+  --color-brand-100: #d4e8d3;
+  --color-brand-200: #aad0a8;
+  --color-brand-300: #79b178;
+  --color-brand-400: #4f924f;
+  --color-brand-500: #2f7635;
+  --color-brand-600: #245f2c;
+  --color-brand-700: #1e4c26;
+  --color-brand-800: #1b3d21;
+  --color-brand-900: #18331e;
+  --color-brand-950: #0a1c0f;
+
+  --color-clay-50: #fbf4ee;
+  --color-clay-100: #f5e3d4;
+  --color-clay-200: #e9c3a7;
+  --color-clay-300: #db9d74;
+  --color-clay-400: #cd7b4b;
+  --color-clay-500: #bf5f31;
+  --color-clay-600: #a64c27;
+  --color-clay-700: #893c23;
+  --color-clay-800: #6f3221;
+  --color-clay-900: #5b2c1e;
+}

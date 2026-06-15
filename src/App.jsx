@@ -1,0 +1,1036 @@
+import { useState } from 'react'
+import { sendContactMessage, isContactConfigured } from './lib/contact'
+
+// ---------------------------------------------------------------------------
+// Site content. Everything a non-developer might want to edit lives in these
+// arrays/constants — copy, products, capabilities, publications, links.
+// Replace placeholder values (marked "replace") with real company records.
+// ---------------------------------------------------------------------------
+
+const COMPANY = {
+  name: 'Farms & Extracts 46',
+  short: 'F&E 46',
+  tagline: 'Ghanaian phytochemical extraction & natural products',
+  email: 'affo@farmsandextracts.com',
+  phone: '+233 53042 4351',
+  address: 'W443 Venus Street, Shai Hills',
+  location: 'Accra, Ghana, West Africa',
+}
+
+const NAV_LINKS = [
+  { label: 'Products', href: '#products' },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Quality', href: '#quality' },
+  { label: 'About', href: '#about' },
+  { label: 'Science', href: '#science' },
+  { label: 'Contact', href: '#contact' },
+]
+
+// Headline trust metrics shown under the hero. Replace numbers with real ones.
+const STATS = [
+  { value: 'Farm → Extract', label: 'Fully vertically integrated supply' },
+  { value: 'Traceable', label: 'Lot-level traceability to source farms' },
+  { value: 'Science-led', label: 'PhD-led extraction & analytical chemistry' },
+  { value: 'Ghana', label: 'Rooted in West African botanicals' },
+]
+
+// The four stages of the farm-to-extract pipeline.
+const PIPELINE = [
+  {
+    step: '01',
+    title: 'Cultivation',
+    body: 'Cultivation and ethical wild-collection of West African botanicals — including Thaumatococcus daniellii and Synsepalum dulcificum — with managed grower networks and agronomic support.',
+    icon: 'sprout',
+  },
+  {
+    step: '02',
+    title: 'Extraction & Processing',
+    body: 'Optimised, food-grade extraction and downstream processing that converts raw plant material into stable, high-purity actives at consistent yield.',
+    icon: 'flask',
+  },
+  {
+    step: '03',
+    title: 'Bulk Extracts',
+    body: 'Standardised bulk botanical extracts and ingredients supplied to formulators and manufacturers, with specifications and certificates of analysis.',
+    icon: 'drum',
+  },
+  {
+    step: '04',
+    title: 'Finished Products',
+    body: 'Finished natural products — sweeteners, taste modifiers and wellness ingredients — taken from extract to market-ready format.',
+    icon: 'package',
+  },
+]
+
+// Product / ingredient catalogue. Replace specs and statuses with real data.
+const PRODUCTS = [
+  {
+    name: 'Thaumatin',
+    source: 'Thaumatococcus daniellii (katemfe)',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Intensely sweet, natural sweet-tasting protein for sugar reduction and flavour enhancement in food and beverage applications.',
+    photos: [
+      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested katemfe (Thaumatococcus daniellii) fruits' },
+      { src: '/images/t-danielli-arils.jpeg', alt: 'Katemfe arils' },
+      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril' },
+      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)' },
+    ],
+  },
+  {
+    name: 'Miracle Berry Extract',
+    source: 'Synsepalum dulcificum',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Miraculin-rich taste-modifying glycoprotein that transforms sour to sweet — for novel food, nutraceutical and research uses.',
+  },
+  {
+    name: 'Custom Botanical Extracts',
+    source: 'West African medicinal plants',
+    tag: 'Made to order',
+    status: 'Enquire',
+    body: 'Targeted extraction of bioactive compounds from a range of indigenous botanicals, developed to your specification and purity requirements.',
+  },
+  {
+    name: 'Raw & Dried Botanicals',
+    source: 'Cultivated & sustainably collected',
+    tag: 'Raw material',
+    status: 'Available',
+    body: 'Traceable raw and dried plant material supplied in bulk to extractors, researchers and manufacturers across the value chain.',
+  },
+  {
+    name: 'Moringa Leaf Extract',
+    source: 'Moringa oleifera',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Rich in vitamins, minerals and antioxidants for nutraceutical and wellness applications.',
+  },
+  {
+    name: 'Shea Butter',
+    source: 'Vitellaria paradoxa (northern Ghana)',
+    tag: 'Raw material',
+    status: 'Available',
+    body: 'Cold-pressed, unrefined shea butter from northern Ghana. Available in food and cosmetic grade.',
+  },
+  {
+    name: 'Baobab Extract',
+    source: 'Adansonia digitata',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'High vitamin C content, available as a powder from sustainably harvested fruits.',
+  },
+  {
+    name: 'Neem Extract',
+    source: 'Azadirachta indica',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Standardised azadirachtin content. Available for agricultural and pharmaceutical use.',
+  },
+  {
+    name: 'Cocoa Polyphenols',
+    source: 'Theobroma cacao (Ghana cocoa)',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Extracted from Ghana cocoa beans. High flavonoid content for nutraceutical applications.',
+  },
+]
+
+// Audience-facing service offers.
+const SERVICES = [
+  {
+    title: 'Contract & toll extraction',
+    body: 'Bring us your botanical and we develop or run the extraction — from feasibility and method development to scaled processing.',
+    icon: 'flask',
+  },
+  {
+    title: 'Bulk ingredient supply',
+    body: 'Reliable, specification-backed supply of botanical extracts and raw materials for B2B buyers, formulators and distributors.',
+    icon: 'drum',
+  },
+  {
+    title: 'Sourcing & cultivation partnerships',
+    body: 'Traceable supply secured through our own cultivation and managed grower networks in West Africa.',
+    icon: 'sprout',
+  },
+]
+
+// Quality & traceability commitments.
+const QUALITY = [
+  {
+    title: 'Lot-level traceability',
+    body: 'Every batch is traceable to its source farms and harvest, giving buyers confidence in origin and authenticity.',
+  },
+  {
+    title: 'Certificates of analysis',
+    body: 'Bulk extracts ship with specifications and CoA covering identity, purity and key actives. (Standards in build-out.)',
+  },
+  {
+    title: 'Food-grade processing',
+    body: 'Extraction and handling designed around food-grade practice and consistent, reproducible output.',
+  },
+  {
+    title: 'Sustainable sourcing',
+    body: 'Cultivation and ethical collection that supports local growers and the long-term health of wild populations.',
+  },
+]
+
+// Academic credentials shown in the founder/science panel.
+const BACKGROUND = [
+  { label: 'PhD', value: 'Chemistry' },
+  { label: 'Specialism', value: 'Botanical extraction chemistry' },
+  { label: 'Model systems', value: 'S. dulcificum · T. daniellii' },
+]
+
+// Placeholder publications — replace title/venue/year/href with real records.
+const PUBLICATIONS = [
+  {
+    title: 'Extraction yield optimisation of thaumatin from Thaumatococcus daniellii',
+    venue: 'Journal name — replace with real citation',
+    year: '2024',
+    href: '#',
+  },
+  {
+    title: 'Bioactive profiling of miracle berry (Synsepalum dulcificum) extracts',
+    venue: 'Journal name — replace with real citation',
+    year: '2023',
+    href: '#',
+  },
+  {
+    title: 'Medicinal plants of West Africa: a review of extraction technologies',
+    venue: 'Review venue — replace with real citation',
+    year: '2022',
+    href: '#',
+  },
+]
+
+// Reasons an enquiry might come in — drives the contact form's subject line.
+const ENQUIRY_TYPES = [
+  'Buy bulk extracts',
+  'Contract / toll extraction',
+  'Raw material supply',
+  'Partnership / investment',
+  'Retail / finished products',
+  'Other',
+]
+
+// Professional / academic profiles. Replace `href: '#'` with real URLs.
+const SOCIALS = [
+  { name: 'LinkedIn', href: '#', icon: 'linkedin' },
+  { name: 'ResearchGate', href: '#', icon: 'researchgate' },
+  { name: 'ORCID', href: '#', icon: 'orcid' },
+  { name: 'Google Scholar', href: '#', icon: 'scholar' },
+  { name: 'Email', href: `mailto:${COMPANY.email}`, icon: 'email' },
+]
+
+// Inline brand/utility icons (24×24 viewBox) so we ship zero icon-library deps.
+const ICON_PATHS = {
+  linkedin:
+    'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z',
+  researchgate:
+    'M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.19 3.19 0 00-.112.437 8.37 8.37 0 00-.078.53 9 9 0 00-.05.727c-.01.282-.013.621-.013 1.016 0 .405.004.748.014 1.017.01.27.027.512.05.727.022.213.048.39.077.53.03.14.067.286.112.437.243.743.65 1.303 1.213 1.68.565.376 1.255.564 2.073.564.81 0 1.514-.197 2.085-.588.572-.391.99-.95 1.261-1.677a3.53 3.53 0 00.149-.516c.039-.18.07-.378.094-.595.023-.218.04-.456.05-.717.01-.27.013-.6.013-.997 0-.405-.004-.748-.014-1.03a9.4 9.4 0 00-.05-.718 5.95 5.95 0 00-.093-.595 3.53 3.53 0 00-.149-.516c-.27-.728-.69-1.286-1.26-1.677C21.1.197 20.396 0 19.586 0zm.024 1.729c.482 0 .87.143 1.166.428.297.286.479.685.547 1.197.024.21.045.418.064.624.018.207.027.456.027.748v.69c0 .293-.009.541-.027.748-.019.21-.04.418-.064.624-.068.512-.25.911-.547 1.197-.296.285-.684.428-1.166.428-.483 0-.872-.143-1.169-.428-.296-.286-.479-.685-.547-1.197a8.5 8.5 0 01-.064-.624 9.55 9.55 0 01-.027-.748v-.69c0-.292.009-.54.027-.748.019-.206.04-.414.064-.624.068-.512.25-.911.547-1.197.297-.285.686-.428 1.169-.428zM8.391 2.103c-.6 0-1.18.013-1.741.04-.561.027-1.052.06-1.474.1V18.95h1.94v-6.602h1.626l3.124 6.602h2.16l-3.376-6.96c.901-.28 1.586-.74 2.057-1.382.47-.642.705-1.45.705-2.422 0-1.235-.378-2.16-1.135-2.776-.756-.616-1.95-.924-3.583-.924zm.122 1.633c.901 0 1.547.158 1.938.475.391.316.587.84.587 1.572 0 .732-.196 1.262-.587 1.59-.391.328-1.037.492-1.938.492H7.116V3.736h1.397z',
+  orcid:
+    'M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 01-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z',
+  scholar:
+    'M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z',
+  email:
+    'M1.5 4.5h21A1.5 1.5 0 0124 6v12a1.5 1.5 0 01-1.5 1.5h-21A1.5 1.5 0 010 18V6a1.5 1.5 0 011.5-1.5zm.43 1.5L12 12.713 22.07 6H1.93zM22.5 7.06l-9.99 6.66a1 1 0 01-1.02 0L1.5 7.06V18h21V7.06z',
+  // Capability / product icons.
+  sprout:
+    'M12 22V12m0 0C12 8 9 5 4 5c0 5 3 8 8 8m0-1c0-4 3-7 8-7 0 5-3 8-8 8',
+  flask:
+    'M9 3h6M10 3v6.5L5.5 17a2 2 0 001.8 3h9.4a2 2 0 001.8-3L14 9.5V3M8 14h8',
+  drum:
+    'M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zm0 0v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7',
+  package:
+    'M21 8l-9-5-9 5m18 0l-9 5m9-5v8l-9 5m0-8L3 8m9 5v8M3 8v8l9 5',
+  leaf:
+    'M11 20A7 7 0 014 13C4 8 8 4 19 4c0 11-4 15-9 15a7 7 0 01-2-.3M4 21c1.5-5 5-8 11-9',
+  check: 'M20 6L9 17l-5-5',
+}
+
+function SocialIcon({ name, className = 'h-5 w-5' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      role="presentation"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d={ICON_PATHS[name]} />
+    </svg>
+  )
+}
+
+// Stroke-style icon for capability/product glyphs.
+function LineIcon({ name, className = 'h-6 w-6' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d={ICON_PATHS[name]} />
+    </svg>
+  )
+}
+
+function Logo({ className = 'h-9 w-9' }) {
+  return (
+    <span
+      className={`flex items-center justify-center rounded-xl bg-brand-600 text-white ${className}`}
+    >
+      <LineIcon name="leaf" className="h-5 w-5" />
+    </span>
+  )
+}
+
+function App() {
+  // 'idle' | 'submitting' | 'success' | 'error'
+  const [status, setStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+
+    setStatus('submitting')
+    setErrorMessage('')
+
+    try {
+      await sendContactMessage(data)
+      setStatus('success')
+      form.reset()
+    } catch (err) {
+      setErrorMessage(err.message)
+      setStatus('error')
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-stone-50 text-stone-700">
+      {/* Header */}
+      <header className="sticky top-0 z-20 border-b border-stone-200 bg-white/85 backdrop-blur">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <a href="#top" className="flex items-center gap-2.5">
+            <Logo className="h-9 w-9" />
+            <span className="flex flex-col leading-tight">
+              <span className="text-base font-bold tracking-tight text-stone-900">
+                {COMPANY.name}
+              </span>
+              <span className="hidden text-[11px] font-medium uppercase tracking-wider text-brand-700 sm:block">
+                {COMPANY.tagline}
+              </span>
+            </span>
+          </a>
+          <div className="flex items-center gap-6">
+            <ul className="hidden gap-7 text-sm font-medium text-stone-600 lg:flex">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="transition-colors hover:text-brand-700"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#contact"
+              className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-500"
+            >
+              Request a quote
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="top">
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-stone-50 to-stone-50">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-clay-100/60 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-32 top-40 h-80 w-80 rounded-full bg-brand-100/50 blur-3xl"
+          />
+          <div className="relative mx-auto flex max-w-6xl flex-col items-center px-6 py-24 text-center sm:py-32">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-medium text-brand-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+              {COMPANY.tagline}
+            </span>
+            <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-stone-900 sm:text-6xl">
+              From West African soil to{' '}
+              <span className="text-brand-700">refined botanical extracts</span>
+              .
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone-600">
+              {COMPANY.name} is a Ghanaian phytochemical extraction and natural
+              products manufacturer. We integrate cultivation, extraction and
+              finished-product manufacturing into one traceable pipeline —
+              supplying high-value botanicals like thaumatin and miracle berry to
+              buyers worldwide.
+            </p>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#products"
+                className="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-500"
+              >
+                Explore our products
+              </a>
+              <a
+                href="#contact"
+                className="rounded-lg border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-700 transition-colors hover:bg-stone-50"
+              >
+                Request a quote
+              </a>
+            </div>
+
+            {/* Trust stats */}
+            <dl className="mt-16 grid w-full max-w-4xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-stone-200 bg-stone-200 text-left sm:grid-cols-4">
+              {STATS.map((stat) => (
+                <div key={stat.label} className="bg-white p-5">
+                  <dt className="text-base font-bold text-brand-700">
+                    {stat.value}
+                  </dt>
+                  <dd className="mt-1 text-xs leading-relaxed text-stone-500">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Farm-to-extract pipeline */}
+        <section
+          id="capabilities"
+          className="border-t border-stone-200 py-24"
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Vertically Integrated
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                One traceable pipeline, farm to extract
+              </h2>
+              <p className="mt-4 text-stone-600">
+                Owning every step lets us guarantee origin, quality and supply —
+                from the seedling in the soil to the standardised extract in the
+                drum.
+              </p>
+            </div>
+            <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {PIPELINE.map((stage) => (
+                <div
+                  key={stage.title}
+                  className="relative rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <span className="text-xs font-bold tracking-widest text-clay-400">
+                    {stage.step}
+                  </span>
+                  <div className="mt-3 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                    <LineIcon name={stage.icon} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-stone-900">
+                    {stage.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                    {stage.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Products */}
+        <section
+          id="products"
+          className="border-t border-stone-200 bg-stone-100 py-24"
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Products & Ingredients
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                High-value botanicals, made to specification
+              </h2>
+              <p className="mt-4 text-stone-600">
+                Bulk extracts, raw materials and finished natural products. Need
+                a specification sheet or sample? Send an enquiry.
+              </p>
+            </div>
+            <div className="mt-14 grid gap-6 sm:grid-cols-2">
+              {PRODUCTS.map((product) => (
+                <article
+                  key={product.name}
+                  className="flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  {product.photos ? (
+                    <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
+                      {product.photos.map((image) => (
+                        <img
+                          key={image.src}
+                          src={image.src}
+                          alt={image.alt}
+                          loading="lazy"
+                          className="h-24 w-full object-cover"
+                        />
+                      ))}
+                    </div>
+                  ) : product.photo ? (
+                    <img
+                      src={product.photo}
+                      alt={product.photoAlt ?? product.name}
+                      loading="lazy"
+                      className="-mx-7 -mt-7 mb-6 h-48 w-full rounded-t-2xl object-cover"
+                    />
+                  ) : null}
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-stone-900">
+                        {product.name}
+                      </h3>
+                      <p className="mt-0.5 text-sm italic text-stone-500">
+                        {product.source}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                      {product.tag}
+                    </span>
+                  </div>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">
+                    {product.body}
+                  </p>
+                  <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
+                      <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+                      {product.status}
+                    </span>
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-600"
+                    >
+                      Enquire
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-sm text-stone-500">
+              All products available in bulk. CoA and samples available upon
+              request.
+            </p>
+          </div>
+        </section>
+
+        {/* Services / work with us */}
+        <section className="border-t border-stone-200 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Work With Us
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                Supply, extraction and partnership
+              </h2>
+            </div>
+            <div className="mt-14 grid gap-8 sm:grid-cols-3">
+              {SERVICES.map((service) => (
+                <div key={service.title} className="text-left">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-600 text-white">
+                    <LineIcon name={service.icon} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-stone-900">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                    {service.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Quality & traceability */}
+        <section
+          id="quality"
+          className="border-t border-stone-200 bg-brand-900 py-24 text-brand-50"
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-wider text-brand-300">
+                  Quality & Traceability
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Buyers can trust what&apos;s in the drum
+                </h2>
+                <p className="mt-4 max-w-md leading-relaxed text-brand-100/80">
+                  Because we control cultivation through to extraction, we can
+                  stand behind the identity, purity and origin of every batch we
+                  ship — and back it with documentation.
+                </p>
+                <a
+                  href="#contact"
+                  className="mt-8 inline-flex rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-800 shadow-sm transition-colors hover:bg-brand-50"
+                >
+                  Request specifications
+                </a>
+              </div>
+              <dl className="grid gap-px overflow-hidden rounded-2xl border border-brand-700 bg-brand-700 sm:grid-cols-2">
+                {QUALITY.map((item) => (
+                  <div key={item.title} className="bg-brand-800 p-6">
+                    <dt className="flex items-center gap-2 text-sm font-semibold text-white">
+                      <LineIcon
+                        name="check"
+                        className="h-4 w-4 text-brand-300"
+                      />
+                      {item.title}
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-brand-100/75">
+                      {item.body}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        {/* About */}
+        <section id="about" className="border-t border-stone-200 py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                About {COMPANY.short}
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                Building West Africa&apos;s botanical value chain
+              </h2>
+              <div className="mt-5 space-y-4 leading-relaxed text-stone-600">
+                <p>
+                  {COMPANY.name} exists to turn West Africa&apos;s extraordinary
+                  botanical heritage into high-value, science-backed ingredients
+                  — without exporting the value, or the jobs, somewhere else.
+                </p>
+                <p>
+                  We bring cultivation, extraction chemistry and manufacturing
+                  under one roof so that growers, buyers and partners all benefit
+                  from a transparent, reliable supply chain rooted in Ghana.
+                </p>
+              </div>
+              <ul className="mt-8 space-y-3 text-sm">
+                {[
+                  'Founded on doctoral extraction-chemistry research',
+                  'Local cultivation and grower partnerships',
+                  'Serving food, beverage, nutraceutical and research markets',
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+                      <LineIcon name="check" className="h-3 w-3" />
+                    </span>
+                    <span className="text-stone-700">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-3xl border border-brand-100 bg-gradient-to-br from-brand-50 to-white p-8">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl bg-white p-6 shadow-sm">
+                  <p className="text-3xl font-bold text-brand-700">2</p>
+                  <p className="mt-1 text-sm text-stone-500">
+                    Flagship sweet-protein botanicals in development
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white p-6 shadow-sm">
+                  <p className="text-3xl font-bold text-brand-700">100%</p>
+                  <p className="mt-1 text-sm text-stone-500">
+                    Sourced from West African botanicals
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white p-6 shadow-sm">
+                  <p className="text-3xl font-bold text-brand-700">Farm→Lab</p>
+                  <p className="mt-1 text-sm text-stone-500">
+                    Integrated cultivation and extraction
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white p-6 shadow-sm">
+                  <p className="text-3xl font-bold text-brand-700">Ghana</p>
+                  <p className="mt-1 text-sm text-stone-500">
+                    Headquartered in West Africa
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Science & leadership */}
+        <section
+          id="science"
+          className="border-t border-stone-200 bg-stone-100 py-24"
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Science & Leadership
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                Led by doctoral extraction chemistry
+              </h2>
+              <p className="mt-4 text-stone-600">
+                Our processes are grounded in peer-reviewed research, not
+                guesswork — giving partners confidence in our yields and our
+                quality.
+              </p>
+            </div>
+
+            {/* Founder panel */}
+            <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-brand-100 bg-white p-8 shadow-sm">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-4">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white">
+                    PhD
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-stone-900">
+                      Dr Walter Affo
+                    </h3>
+                    <p className="text-sm text-stone-600">
+                      Founder · Chemist (PhD) &amp; Biotechnology Entrepreneur
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  {SOCIALS.filter((s) =>
+                    ['orcid', 'researchgate', 'scholar', 'linkedin'].includes(
+                      s.icon,
+                    ),
+                  ).map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={social.name}
+                      title={social.name}
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-200 bg-white text-brand-700 transition-colors hover:bg-brand-600 hover:text-white"
+                    >
+                      <SocialIcon name={social.icon} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <p className="mt-6 border-t border-stone-100 pt-6 text-sm leading-relaxed text-stone-600">
+                {COMPANY.short} was founded by Dr Walter Affo, whose doctoral and
+                ongoing research focuses on the extraction chemistry of West
+                African medicinal plants — notably the sweet protein thaumatin
+                and the taste-modifying miracle berry. That scientific foundation
+                shapes how the company develops every process and product.
+              </p>
+              <dl className="mt-6 grid gap-4 border-t border-stone-100 pt-6 sm:grid-cols-3">
+                {BACKGROUND.map((item) => (
+                  <div key={item.label}>
+                    <dt className="text-xs font-semibold uppercase tracking-wider text-brand-700">
+                      {item.label}
+                    </dt>
+                    <dd className="mt-1 text-sm text-stone-700">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            {/* Publications */}
+            <div className="mx-auto mt-10 max-w-4xl">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-500">
+                Selected publications
+              </h3>
+              <ul className="mt-4 divide-y divide-stone-200 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                {PUBLICATIONS.map((pub) => (
+                  <li key={pub.title}>
+                    <a
+                      href={pub.href}
+                      className="flex items-center gap-4 px-6 py-5 transition-colors hover:bg-stone-50"
+                    >
+                      <span className="text-sm font-semibold text-stone-400">
+                        {pub.year}
+                      </span>
+                      <span className="flex-1">
+                        <span className="block text-sm font-semibold leading-snug text-stone-900">
+                          {pub.title}
+                        </span>
+                        <span className="mt-0.5 block text-xs italic text-stone-500">
+                          {pub.venue}
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="text-brand-600"
+                      >
+                        →
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact / enquiry */}
+        <section id="contact" className="border-t border-stone-200 py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Get in Touch
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                Request a quote or sample
+              </h2>
+              <p className="mt-4 max-w-md leading-relaxed text-stone-600">
+                Whether you&apos;re sourcing bulk extracts, exploring contract
+                extraction, or interested in partnership and investment, we&apos;d
+                like to hear from you.
+              </p>
+              <dl className="mt-8 space-y-4 text-sm">
+                <div className="flex gap-3">
+                  <dt className="w-20 shrink-0 font-medium text-stone-900">
+                    Email
+                  </dt>
+                  <dd>
+                    <a
+                      href={`mailto:${COMPANY.email}`}
+                      className="text-brand-700 hover:text-brand-600"
+                    >
+                      {COMPANY.email}
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-20 shrink-0 font-medium text-stone-900">
+                    Phone
+                  </dt>
+                  <dd className="text-stone-600">{COMPANY.phone}</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-20 shrink-0 font-medium text-stone-900">
+                    Address
+                  </dt>
+                  <dd className="text-stone-600">
+                    {COMPANY.address}
+                    <br />
+                    {COMPANY.location}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="rounded-2xl border border-stone-200 bg-white p-8 shadow-sm">
+              {status === 'success' ? (
+                <div className="flex h-full flex-col items-center justify-center py-12 text-center">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+                    <LineIcon name="check" className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-stone-900">
+                    Thank you
+                  </h3>
+                  <p className="mt-2 text-sm text-stone-600">
+                    Your enquiry has been received. We&apos;ll be in touch
+                    shortly.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {!isContactConfigured && (
+                    <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                      Heads up: the form isn&apos;t connected to an email
+                      service yet. Add your Formspree endpoint to{' '}
+                      <code className="font-mono">.env.local</code> and restart
+                      the dev server.
+                    </p>
+                  )}
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value={`New enquiry — ${COMPANY.name} website`}
+                  />
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-stone-700"
+                      >
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        className="mt-1.5 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-stone-700"
+                      >
+                        Company
+                      </label>
+                      <input
+                        id="company"
+                        name="company"
+                        type="text"
+                        className="mt-1.5 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-stone-700"
+                    >
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      className="mt-1.5 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="enquiry"
+                      className="block text-sm font-medium text-stone-700"
+                    >
+                      Enquiry type
+                    </label>
+                    <select
+                      id="enquiry"
+                      name="enquiry"
+                      defaultValue=""
+                      className="mt-1.5 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                    >
+                      <option value="" disabled>
+                        Select one…
+                      </option>
+                      {ENQUIRY_TYPES.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-stone-700"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="4"
+                      required
+                      className="mt-1.5 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                    />
+                  </div>
+                  {status === 'error' && (
+                    <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                      {errorMessage}
+                    </p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="w-full rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {status === 'submitting' ? 'Sending…' : 'Send enquiry'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-stone-200 bg-stone-100 py-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex flex-col gap-8 border-b border-stone-200 pb-8 sm:flex-row sm:items-start sm:justify-between">
+            <div className="max-w-sm">
+              <div className="flex items-center gap-2.5">
+                <Logo className="h-9 w-9" />
+                <span className="text-base font-bold tracking-tight text-stone-900">
+                  {COMPANY.name}
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-stone-500">
+                Ghanaian phytochemical extraction and natural products — a
+                traceable pipeline from West African farms to refined botanical
+                extracts.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:items-end">
+              <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-stone-600">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="transition-colors hover:text-brand-700"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className="flex items-center gap-3">
+                {SOCIALS.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target={social.icon === 'email' ? undefined : '_blank'}
+                    rel={social.icon === 'email' ? undefined : 'noreferrer'}
+                    aria-label={social.name}
+                    title={social.name}
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-500 transition-colors hover:border-brand-300 hover:bg-brand-600 hover:text-white"
+                  >
+                    <SocialIcon name={social.icon} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col items-center justify-between gap-2 text-sm text-stone-500 sm:flex-row">
+            <p>
+              © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+            </p>
+            <p>
+              {COMPANY.address}, {COMPANY.location}
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default App
