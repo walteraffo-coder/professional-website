@@ -65,6 +65,20 @@ const PIPELINE = [
 // Product / ingredient catalogue. Replace specs and statuses with real data.
 const PRODUCTS = [
   {
+    name: 'Miracle Berry Extract',
+    source: 'Synsepalum dulcificum',
+    tag: 'Bulk extract',
+    status: 'Available',
+    wide: true,
+    body: [
+      'Miraculin is a taste-modifying glycoprotein extracted from the fruit of Synsepalum dulcificum (Miracle Berry). It works by binding to taste receptors on the tongue, temporarily converting sour and acidic tastes into sweetness for up to 90 minutes — without adding any sugar or calories.',
+      'Beyond taste modification, miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center, where it has shown promise in masking the metallic taste (“metal-mouth”) experienced by chemotherapy patients — restoring normal food enjoyment during treatment.',
+      'The fruit powder is also rich in antioxidants, polyphenols and flavonoids, with demonstrated benefits in reducing oxidative stress and increasing insulin sensitivity — making it a candidate ingredient for diabetes management formulations.',
+    ],
+    applications:
+      'Natural taste modification, nutraceuticals, oncology support, anti-diabetic formulations, functional foods.',
+  },
+  {
     name: 'Thaumatin',
     source: 'Thaumatococcus daniellii (katemfe)',
     tag: 'Bulk extract',
@@ -76,19 +90,6 @@ const PRODUCTS = [
       { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Katemfe seed with aril', caption: 'Seed with aril' },
       { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Katemfe seed (black) and aril (white)', caption: 'Seed & aril, separated' },
     ],
-  },
-  {
-    name: 'Miracle Berry Extract',
-    source: 'Synsepalum dulcificum',
-    tag: 'Bulk extract',
-    status: 'Available',
-    body: [
-      'Miraculin is a taste-modifying glycoprotein extracted from the fruit of Synsepalum dulcificum (Miracle Berry). It works by binding to taste receptors on the tongue, temporarily converting sour and acidic tastes into sweetness for up to 90 minutes — without adding any sugar or calories.',
-      'Beyond taste modification, miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center, where it has shown promise in masking the metallic taste (“metal-mouth”) experienced by chemotherapy patients — restoring normal food enjoyment during treatment.',
-      'The fruit powder is also rich in antioxidants, polyphenols and flavonoids, with demonstrated benefits in reducing oxidative stress and increasing insulin sensitivity — making it a candidate ingredient for diabetes management formulations.',
-    ],
-    applications:
-      'Natural taste modification, nutraceuticals, oncology support, anti-diabetic formulations, functional foods.',
   },
   {
     name: 'Custom Botanical Extracts',
@@ -504,7 +505,9 @@ function App() {
               {PRODUCTS.map((product) => (
                 <article
                   key={product.name}
-                  className="flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md"
+                  className={`flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md${
+                    product.wide ? ' sm:col-span-2' : ''
+                  }`}
                 >
                   {product.photos ? (
                     <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
