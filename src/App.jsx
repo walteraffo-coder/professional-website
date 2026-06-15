@@ -575,9 +575,11 @@ function App() {
                             <p className="font-semibold text-stone-900">
                               Applications:
                             </p>
-                            <ul className="mt-1.5 list-disc space-y-1 pl-5">
+                            <ul className="mt-1.5 list-disc space-y-1 pl-5 sm:columns-2 sm:gap-x-8">
                               {product.applications.map((item, index) => (
-                                <li key={index}>{item}</li>
+                                <li key={index} className="break-inside-avoid">
+                                  {item}
+                                </li>
                               ))}
                             </ul>
                           </div>
