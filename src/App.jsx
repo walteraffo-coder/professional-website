@@ -130,6 +130,13 @@ const PRODUCTS = [
     supplyForm: 'Dried seeds, root bark, crude alkaloid extract.',
   },
   {
+    name: '5-HTP',
+    source: 'Griffonia simplicifolia',
+    tag: 'Bulk extract',
+    status: 'Available',
+    body: 'Griffonia simplicifolia seeds are a natural source of (L)-5-Hydroxytryptophan (5-HTP), a direct serotonin precursor. Extracted and purified for dietary supplements targeting depression, anxiety, fibromyalgia, insomnia, and weight management.',
+  },
+  {
     name: 'Custom Botanical Extracts',
     source: 'West African medicinal plants',
     tag: 'Made to order',
