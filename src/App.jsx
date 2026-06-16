@@ -307,6 +307,89 @@ const PRODUCTS = [
   },
 ]
 
+// Raw & dried botanicals catalogued for bulk supply. `flag` adds a restricted-
+// access warning tag (e.g. controlled pharmaceutical precursors).
+const RAW_INVENTORY = [
+  {
+    name: 'Phyllanthus niruri',
+    common: 'Stonebreaker / Chanca Piedra',
+    part: 'Whole herb',
+    context:
+      'Preferred by urological supplement formulators for disrupting kidney stone aggregation.',
+  },
+  {
+    name: 'Tetrapleura tetraptera',
+    common: 'Prekese / Aidan Fruit',
+    part: 'Dried pods / fruits',
+    context:
+      'High anti-inflammatory and hypoglycaemic activity; used in metabolic-health functional foods.',
+  },
+  {
+    name: 'Ongokea gore',
+    common: 'Boleko Nut / Isano',
+    part: 'Dried seeds / bark',
+    context:
+      'Unique industrial seed oil utilised for rapid heat-driven polymerisation in advanced coatings.',
+  },
+  {
+    name: 'Tribulus terrestris',
+    common: 'Puncture Vine / Gokshura',
+    part: 'Fruits & roots',
+    context:
+      'Rich in steroidal saponins (protodioscin); widely utilised to optimise libido and athletic stamina.',
+  },
+  {
+    name: 'Xylopia aethiopica',
+    common: 'African Pepper / Uda / Hwentia',
+    part: 'Dried pods / fruits',
+    context:
+      'High in kaurane diterpenes; provides exceptional antimicrobial properties for natural food preservation.',
+  },
+  {
+    name: 'Mondia whitei',
+    common: 'White’s Ginger / Mukombero',
+    part: 'Dried roots',
+    context:
+      'Formulated into premium aphrodisiac, stamina, and sweet-vanilla aromatic flavouring agents.',
+  },
+  {
+    name: 'Allanblackia floribunda',
+    common: 'Tallow Tree / Kisidwe',
+    part: 'Seeds / kernels',
+    context:
+      'Exceptional sharp-melting-profile fat; acts as a sustainable alternative to palm oil and cocoa butter.',
+  },
+  {
+    name: 'Cryptolepis sanguinolenta',
+    common: 'Ghana Quinine / Nibima',
+    part: 'Dried roots',
+    context:
+      'Dominant anti-infective botanical rich in cryptolepine; clinically relevant for malaria, Lyme disease and Babesia protocols.',
+  },
+  {
+    name: 'Gymnema sylvestre',
+    common: 'Gurmar (Sugar Destroyer)',
+    part: 'Dried leaves',
+    context:
+      'Contains gymnemic acids that temporarily desensitise sweet receptors to block glucose absorption and manage cravings.',
+  },
+  {
+    name: 'Moringa oleifera',
+    common: 'Drumstick Tree / Miracle Tree',
+    part: 'Leaves / seeds',
+    context:
+      'Nutrient-dense superfood powerhouse widely used in anti-ageing cosmetics and general immunity powders.',
+  },
+  {
+    name: 'Physostigma venenosum',
+    common: 'Calabar Bean',
+    part: 'Dried seeds',
+    context:
+      'Strictly a high-value pharmaceutical precursor containing physostigmine for glaucoma and cholinesterase-inhibitor development.',
+    flag: 'B2B Verified Accounts Only',
+  },
+]
+
 // Audience-facing service offers.
 const SERVICES = [
   {
@@ -877,6 +960,133 @@ function App() {
               All products available in bulk. CoA and samples available upon
               request.
             </p>
+          </div>
+        </section>
+
+        {/* Available raw bulk inventory */}
+        <section
+          id="inventory"
+          className="border-t border-stone-200 bg-white py-24"
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Bulk supply
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                Available Raw Bulk Inventory
+              </h2>
+              <p className="mt-4 text-stone-600">
+                Raw and dried botanicals catalogued for bulk supply to
+                extractors, formulators and manufacturers. CoA and samples
+                available on request.
+              </p>
+            </div>
+
+            {/* Table — tablet and desktop */}
+            <div className="mt-12 hidden overflow-hidden rounded-2xl border border-stone-200 shadow-sm md:block">
+              <table className="w-full border-collapse text-left text-sm">
+                <thead>
+                  <tr className="bg-stone-100 text-xs font-semibold uppercase tracking-wider text-stone-500">
+                    <th scope="col" className="px-6 py-4">
+                      Botanical name
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Regional / common name
+                    </th>
+                    <th scope="col" className="whitespace-nowrap px-6 py-4">
+                      Primary part shipped
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Commercial sourcing context
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {RAW_INVENTORY.map((item, index) => (
+                    <tr
+                      key={item.name}
+                      className={`border-t border-stone-200 align-top${
+                        index % 2 === 1 ? ' bg-stone-50' : ' bg-white'
+                      }`}
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium italic text-stone-900"
+                      >
+                        {item.name}
+                      </th>
+                      <td className="px-6 py-4 text-stone-700">
+                        <span>{item.common}</span>
+                        {item.flag && (
+                          <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                            <svg
+                              className="h-3 w-3"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495zM10 6a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 6zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            {item.flag}
+                          </span>
+                        )}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4 text-stone-700">
+                        {item.part}
+                      </td>
+                      <td className="px-6 py-4 leading-relaxed text-stone-600">
+                        {item.context}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Stacked cards — mobile */}
+            <div className="mt-10 space-y-4 md:hidden">
+              {RAW_INVENTORY.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-base font-semibold italic text-stone-900">
+                      {item.name}
+                    </h3>
+                    <span className="shrink-0 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700">
+                      {item.part}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-stone-500">{item.common}</p>
+                  {item.flag && (
+                    <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                      <svg
+                        className="h-3 w-3"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495zM10 6a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 6zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {item.flag}
+                    </span>
+                  )}
+                  <p className="mt-3 text-sm leading-relaxed text-stone-600">
+                    {item.context}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
