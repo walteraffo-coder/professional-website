@@ -454,6 +454,50 @@ const BACKGROUND = [
   { label: 'Model systems', value: 'S. dulcificum · T. daniellii' },
 ]
 
+// Core leadership & field operations — shown as a two-column grid.
+const TEAM_CORE = [
+  {
+    name: 'Dr. Walter Affo',
+    initials: 'WA',
+    title: 'Research & Development Lead / Key Principal',
+    bio: 'Academic researcher and principal driving the technical, scientific and botanical framework of the enterprise. Oversees the strategic direction of plant-derived product development, academic publications and local integration in Ghana.',
+  },
+  {
+    name: 'Amos Tuah',
+    initials: 'AT',
+    title: 'Botanical Sourcing & Field Operations Expert',
+    bio: 'A seasoned field researcher and supply specialist with several years of experience leading complex field expeditions. He specialises in documenting, mapping and collecting plant specimens across diverse ecosystems, overseeing local sourcing and sustainable supply chains within Ghana.',
+  },
+]
+
+// Strategic advisory board — shown as a responsive multi-column grid.
+const TEAM_ADVISORS = [
+  {
+    name: 'Dana Beal',
+    initials: 'DB',
+    title: 'Strategic Advisor & Global Liaison',
+    bio: 'A veteran international organiser and advocate with decades of experience in plant-derived therapeutics and botanical policy. Provides high-level strategic connections and historical expertise in the global development of specialised plant medicines.',
+  },
+  {
+    name: 'Dr. Chris Jenks',
+    initials: 'CJ',
+    title: 'Scientific & Chemical Advisor',
+    bio: 'A chemist and researcher globally recognised for his work in the extraction, purification and standardisation of therapeutic plant compounds. He ensures that cultivation and processing meet rigorous scientific benchmarks.',
+  },
+  {
+    name: 'Simeon Schnapper',
+    initials: 'SS',
+    title: 'Venture & Investment Advisor',
+    bio: 'An experienced venture capitalist, impact investor and advisor specialising in early-stage emerging technologies, digital assets and botanical sectors. He guides the business model’s scalability and investment readiness.',
+  },
+  {
+    name: 'Robert Gordon',
+    initials: 'RG',
+    title: 'Legal & Operational Advisor',
+    bio: 'Provides essential guidance on international regulatory compliance, legal frameworks for botanical businesses and corporate operational structuring.',
+  },
+]
+
 // Selected publications. Real, DOI-linked records sit alongside placeholders
 // (marked "replace with real citation") that are being filled in plant by plant.
 const PUBLICATIONS = [
@@ -1469,6 +1513,84 @@ function App() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Team — leadership & advisory board */}
+        <section id="team" className="border-t border-stone-200 bg-white py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+                Our Team
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">
+                Leadership & Advisory
+              </h2>
+              <p className="mt-4 text-stone-600">
+                A team of scientists, field experts and global advisors guiding
+                the science, sourcing and growth of the business.
+              </p>
+            </div>
+
+            {/* Core leadership & field operations */}
+            <div className="mt-16">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+                Core Leadership & Field Operations
+              </h3>
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                {TEAM_CORE.map((member) => (
+                  <article
+                    key={member.name}
+                    className="rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-base font-bold text-white">
+                        {member.initials}
+                      </span>
+                      <div>
+                        <h4 className="text-lg font-semibold text-stone-900">
+                          {member.name}
+                        </h4>
+                        <p className="text-sm font-medium text-emerald-700">
+                          {member.title}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-5 text-sm leading-relaxed text-stone-600">
+                      {member.bio}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* Strategic advisory board */}
+            <div className="mt-16">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+                Strategic Advisory Board
+              </h3>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {TEAM_ADVISORS.map((advisor) => (
+                  <article
+                    key={advisor.name}
+                    className="flex flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-sm font-bold text-emerald-700">
+                      {advisor.initials}
+                    </span>
+                    <h4 className="mt-4 text-base font-semibold text-stone-900">
+                      {advisor.name}
+                    </h4>
+                    <p className="text-sm font-medium text-emerald-700">
+                      {advisor.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-stone-600">
+                      {advisor.bio}
+                    </p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
