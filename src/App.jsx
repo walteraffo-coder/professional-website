@@ -270,40 +270,58 @@ const PRODUCTS = [
     status: 'Available',
     body: 'Traceable raw and dried plant material supplied in bulk to extractors, researchers and manufacturers across the value chain.',
   },
+]
+
+// Standardised extracts & bulk ingredients, shown in a category-filtered grid.
+// A filter with tags: null ("Show All") matches everything; otherwise an item
+// is shown when any of its tags appears in the active filter's tags.
+const CATALOG_FILTERS = [
+  { key: 'all', label: 'Show All', tags: null },
+  { key: 'nutraceutical', label: 'Nutraceutical & Wellness', tags: ['Nutraceutical'] },
+  { key: 'cosmetic', label: 'Cosmetic & Personal Care', tags: ['Cosmetic'] },
+  { key: 'agrochemical', label: 'Agrochemical & Technical', tags: ['Agrochemical', 'Technical'] },
+]
+
+const CATALOG_INGREDIENTS = [
   {
     name: 'Moringa Leaf Extract',
     source: 'Moringa oleifera',
-    tag: 'Bulk extract',
+    type: 'Bulk extract',
     status: 'Available',
-    body: 'Rich in vitamins, minerals and antioxidants for nutraceutical and wellness applications.',
+    tags: ['Nutraceutical', 'Cosmetic'],
+    body: 'Rich in vitamins, minerals, and antioxidants for premium nutraceutical and wellness applications.',
   },
   {
     name: 'Shea Butter',
     source: 'Vitellaria paradoxa (northern Ghana)',
-    tag: 'Raw material',
+    type: 'Raw material',
     status: 'Available',
+    tags: ['Cosmetic', 'Raw Material'],
     body: 'Cold-pressed, unrefined shea butter from northern Ghana. Available in food and cosmetic grade.',
   },
   {
     name: 'Baobab Extract',
     source: 'Adansonia digitata',
-    tag: 'Bulk extract',
+    type: 'Bulk extract',
     status: 'Available',
-    body: 'High vitamin C content, available as a powder from sustainably harvested fruits.',
+    tags: ['Nutraceutical'],
+    body: 'High vitamin C content, available as a soluble powder from sustainably harvested fruits.',
   },
   {
     name: 'Neem Extract',
     source: 'Azadirachta indica',
-    tag: 'Bulk extract',
+    type: 'Bulk extract',
     status: 'Available',
-    body: 'Standardised azadirachtin content. Available for agricultural and pharmaceutical use.',
+    tags: ['Agrochemical', 'Technical'],
+    body: 'Standardised azadirachtin content. Optimised for bio-agricultural and pharmaceutical use.',
   },
   {
     name: 'Cocoa Polyphenols',
     source: 'Theobroma cacao (Ghana cocoa)',
-    tag: 'Bulk extract',
+    type: 'Bulk extract',
     status: 'Available',
-    body: 'Extracted from Ghana cocoa beans. High flavonoid content for nutraceutical applications.',
+    tags: ['Nutraceutical'],
+    body: 'Extracted from premium Ghana cocoa beans. High flavonoid content for functional food formulations.',
   },
 ]
 
@@ -621,6 +639,109 @@ function Logo({ className = 'h-9 w-9' }) {
     >
       <LineIcon name="leaf" className="h-5 w-5" />
     </span>
+  )
+}
+
+// Category-filtered catalogue of standardised extracts & bulk ingredients.
+// Filtering is pure client-side state — no reload, instant show/hide.
+function IngredientCatalog() {
+  const [active, setActive] = useState('all')
+  const activeFilter = CATALOG_FILTERS.find((f) => f.key === active)
+  const visible = CATALOG_INGREDIENTS.filter(
+    (item) =>
+      !activeFilter?.tags ||
+      activeFilter.tags.some((tag) => item.tags.includes(tag)),
+  )
+
+  return (
+    <section
+      id="ingredients"
+      className="border-t border-stone-200 bg-white py-24"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+            Catalogue
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">
+            Standardised Extracts & Bulk Ingredients
+          </h2>
+          <p className="mt-4 text-stone-600">
+            Filter our standardised extracts and bulk ingredients by
+            application area.
+          </p>
+        </div>
+
+        {/* Category filter row */}
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {CATALOG_FILTERS.map((filter) => (
+            <button
+              key={filter.key}
+              type="button"
+              onClick={() => setActive(filter.key)}
+              aria-pressed={active === filter.key}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                active === filter.key
+                  ? 'bg-emerald-700 text-white shadow-sm'
+                  : 'border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Filtered cards */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((item) => (
+            <article
+              key={item.name}
+              className="flex flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="text-lg font-semibold text-stone-900">
+                    {item.name}
+                  </h3>
+                  <p className="mt-0.5 text-sm italic text-stone-500">
+                    {item.source}
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
+                  {item.type}
+                </span>
+              </div>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">
+                {item.body}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  {item.status}
+                </span>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 transition-colors hover:text-emerald-700"
+                >
+                  Enquire
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -962,6 +1083,9 @@ function App() {
             </p>
           </div>
         </section>
+
+        {/* Standardised extracts & bulk ingredients — filterable catalogue */}
+        <IngredientCatalog />
 
         {/* Available raw bulk inventory */}
         <section
