@@ -134,6 +134,10 @@ const PRODUCTS = [
     source: 'Griffonia simplicifolia',
     tag: 'Bulk extract',
     status: 'Available',
+    photos: [
+      { src: '/images/griffonia-seeds.jpeg', alt: 'Griffonia simplicifolia seeds', caption: 'Griffonia seeds' },
+      { src: '/images/griffonia-fruits.jpeg', alt: 'Griffonia simplicifolia fruits', caption: 'Griffonia fruits' },
+    ],
     body: 'Griffonia simplicifolia seeds are a natural source of (L)-5-Hydroxytryptophan (5-HTP), a direct serotonin precursor. Extracted and purified for dietary supplements targeting depression, anxiety, fibromyalgia, insomnia, and weight management.',
   },
   {
