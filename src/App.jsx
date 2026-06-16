@@ -772,6 +772,7 @@ function IngredientCatalog() {
                 </span>
                 <a
                   href="#contact"
+                  aria-label={`Enquire about ${item.name}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 transition-colors hover:text-emerald-700"
                 >
                   Enquire
@@ -1091,6 +1092,7 @@ function App() {
                       </span>
                       <a
                         href="#contact"
+                        aria-label={`Enquire about ${product.name}`}
                         className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-600"
                       >
                         Enquire
