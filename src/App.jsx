@@ -76,12 +76,31 @@ const PRODUCTS = [
       { src: '/images/miraculin-powder.jpeg', alt: 'Miraculin powder extracted from the fruit', caption: 'Miraculin powder' },
     ],
     body: [
-      'Miraculin is a taste-modifying glycoprotein extracted from the fruit of Synsepalum dulcificum (Miracle Berry). It works by binding to taste receptors on the tongue, temporarily converting sour and acidic tastes into sweetness for up to 90 minutes — without adding any sugar or calories.',
-      'Beyond taste modification, miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center, where it has shown promise in masking the metallic taste (“metal-mouth”) experienced by chemotherapy patients — restoring normal food enjoyment during treatment.',
+      'Miraculin is a taste-modifying glycoprotein — a homodimeric, glycosylated protein of 191 amino acid residues — extracted exclusively from the pulp of Synsepalum dulcificum (Miracle Berry). Virtually tasteless at neutral pH, it acts as a highly specific, pH-dependent taste modifier: under acidic conditions it activates the human sweet taste receptors (T1R2/T1R3), temporarily converting sour and acidic flavours into intense sweetness for up to 90 minutes — without adding any sugar or calories.',
       'The fruit powder is also rich in antioxidants, polyphenols and flavonoids, with demonstrated benefits in reducing oxidative stress and increasing insulin sensitivity — making it a candidate ingredient for diabetes management formulations.',
+      {
+        heading: 'Oncology support — chemotherapy dysgeusia',
+        text: 'Miraculin has attracted clinical interest from leading institutions including the American Society of Clinical Oncology (ASCO) and Memorial Sloan Kettering Cancer Center for the management of chemotherapy-induced dysgeusia. By masking aversive sourness and clearing the persistent metallic taste (“metal-mouth”) reported during treatment, it restores the palatability of everyday meals — supporting food intake and weight stability in patients prone to food aversion and malnutrition. In a triple-blind, placebo-controlled pilot trial, localised supplementation with dried miracle berry pulp produced noticeable taste improvements in over 30% of chemotherapy patients within two weeks, with several reporting the complete disappearance of metallic tastes.',
+      },
+      {
+        heading: 'Natural sugar reduction',
+        text: 'With public health bodies such as the WHO advising that free sugars be kept below 10% of daily energy intake, miraculin offers a natural alternative to synthetic non-nutritive sweeteners and their associated aftertastes and metabolic concerns. As a natural hypo-palatable diet enhancer, it raises consumer acceptance of nutrient-dense but sharp, bitter or acidic foods — tart fruits, dark leafy vegetables and unsweetened yoghurts — by converting their native organic acids into localised sweetness with no glycaemic load.',
+      },
+      {
+        heading: 'Pharmaceutical & beverage masking',
+        text: 'The same mechanism makes miraculin a natural masking agent for oral pharmaceuticals and functional beverages. Once the tongue is coated, acidic or bitter active ingredients within an optimal pH window of roughly 4.8–6.5 are perceived as sweet rather than aversive — valuable for paediatric suspensions, sour liquid medicines and chewable tablets.',
+      },
+      {
+        heading: 'Formulation & stability',
+        text: 'Miraculin is highly thermolabile, denaturing above 100°C, and is inactivated at extreme pH (below 3 or above 12). It is therefore best suited to raw, cold-processed, freeze-dried or chitosan-coated protective delivery systems rather than baked goods or heavily pasteurised processes.',
+      },
+      {
+        heading: 'Regulatory status',
+        text: 'In the United States, cultivating, selling and consuming raw miracle berries is legal, but concentrated miraculin extract has been treated as an unapproved food additive since the late 1970s and is not Generally Recognised as Safe (GRAS) — commercial use as a food ingredient requires a Food Additive Petition. In the European Union, the European Commission authorised Dried Miracle Berries (the freeze-dried fruit pulp) as a Novel Food in December 2021 under Regulation (EU) 2015/2283, with defined maximum-use limits for food supplements.',
+      },
     ],
     applications:
-      'Natural taste modification, nutraceuticals, oncology support, anti-diabetic formulations, functional foods.',
+      'Natural taste modification, sugar-reduction reformulation, nutraceuticals, oncology nutritional support, anti-diabetic formulations, pharmaceutical taste-masking, functional foods and beverages.',
   },
   {
     name: 'Thaumatin',
@@ -139,6 +158,57 @@ const PRODUCTS = [
       { src: '/images/griffonia-fruits.jpeg', alt: 'Griffonia simplicifolia fruits', caption: 'Griffonia fruits' },
     ],
     body: 'Griffonia simplicifolia seeds are a natural source of (L)-5-Hydroxytryptophan (5-HTP), a direct serotonin precursor. Extracted and purified for dietary supplements targeting depression, anxiety, fibromyalgia, insomnia, and weight management.',
+  },
+  {
+    name: 'Pentadiplandra brazzeana',
+    source: 'Pentadiplandra brazzeana (Oubli)',
+    tag: 'Bulk supply',
+    status: 'Available',
+    photos: [
+      { src: '/images/pentadiplandra-berries.jpeg', alt: 'Pentadiplandra brazzeana berries', caption: 'Pentadiplandra berries' },
+    ],
+    body: [
+      'Pentadiplandra brazzeana is a rare West African climbing plant whose fruit contains Brazzein — a sweet protein 500 to 2,000 times sweeter than sucrose by weight, with zero calories. Major food manufacturers including Coca-Cola, PepsiCo and Nestlé have invested in Brazzein research for calorie-reduction strategies in mainstream products. Supply is extremely limited globally due to the difficulty of obtaining it from its natural source; Farms & Extracts 46 sources fresh ripe berries from West and Central Africa.',
+      {
+        heading: 'Metabolic disease support',
+        text: 'As a non-glycaemic sweetener that is not metabolised like sugar, Brazzein delivers intense sweetness without raising blood glucose or disrupting the gut microbiome. This positions it as a sugar substitute for the dietary management of metabolic conditions such as metabolic dysfunction-associated steatotic liver disease (MASLD) and diabetes, where free-sugar reduction is central to treatment.',
+      },
+      {
+        heading: 'Physicochemical robustness',
+        text: 'Four internal disulfide bonds lock Brazzein into a compact, exceptionally stable fold, keeping it active up to 85°C and across a wide pH range (around pH 2–8). This robustness makes it superior to most natural sweeteners for hot processing — baking, cooking and beverage pasteurisation — where thermolabile proteins would denature and lose their sweetness.',
+      },
+      {
+        heading: 'Engineered sweetness',
+        text: 'Site-directed mutants further amplify potency: a H31R/E36D/E41A triple substitution has been shown to increase sweetness up to 22,500 times that of sucrose, enabling vanishingly small use levels in finished formulations.',
+      },
+      {
+        heading: 'Precision fermentation & scaling',
+        text: 'Because natural supply is limited, Brazzein is increasingly produced by precision fermentation in engineered microbial hosts — including Trichoderma reesei (reported titres around 1.3 g/L) and Pichia pastoris — providing a scalable, animal-free route to consistent, food-grade protein.',
+      },
+    ],
+    applications:
+      'Natural low-calorie sweetener, sugar-reduction reformulation, functional beverages, hot-processed and baked foods, nutraceuticals, pharmaceutical formulations, sweetener blending.',
+  },
+  {
+    name: 'Kombo Butter',
+    source: 'Pycnanthus angolensis (African Nutmeg)',
+    tag: 'Bulk butter',
+    status: 'Available',
+    photos: [
+      { src: '/images/kombo-butter.jpeg', alt: 'Kombo Butter from Pycnanthus angolensis', caption: 'Kombo Butter' },
+    ],
+    body: 'Kombo Butter is a rare unrefined seed fat extracted from Pycnanthus angolensis, native to the tropical forests of Ghana and West Central Africa. Rich in myristoleic acid (approximately 23%), it is one of the few vegetable sources of this bioactive fatty acid, known for its anti-inflammatory, anti-arthritic, and hypoglycaemic properties. The butter also contains kombic acid and sargaquinoic acid — terpenoid quinones with promising antioxidant and anticancer activity under active pharmaceutical research. Deep chocolate-brown in colour with a characteristic nutty aroma, it absorbs quickly without a greasy residue, making it ideal for premium cosmetic formulations.',
+    applications:
+      'Skincare and body care formulations, anti-inflammatory balms and muscle relief products, pharmaceutical research, soap making, aromatherapy.',
+  },
+  {
+    name: 'Hibiscus Seed Oil',
+    source: 'Hibiscus sabdariffa (Roselle)',
+    tag: 'Cold pressed oil',
+    status: 'Available',
+    body: 'Hibiscus sabdariffa seed oil is cold-pressed from the seeds of the Roselle plant, yielding a lightweight oil rich in essential fatty acids and antioxidants. Highly valued in cosmetics for its moisturising, anti-aging, and skin-conditioning properties. Absorbs rapidly without a greasy residue — ideal for facial serums, body oils, hair treatments, and cleansers. Also used in nutraceutical and pharmaceutical formulations for cardiovascular and metabolic health support.',
+    applications:
+      'Facial serums, body butters, hair care, cleansers, nutraceuticals, pharmaceutical ingredient supply.',
   },
   {
     name: 'Custom Botanical Extracts',
@@ -237,8 +307,23 @@ const BACKGROUND = [
   { label: 'Model systems', value: 'S. dulcificum · T. daniellii' },
 ]
 
-// Placeholder publications — replace title/venue/year/href with real records.
+// Selected publications. Real, DOI-linked records sit alongside placeholders
+// (marked "replace with real citation") that are being filled in plant by plant.
 const PUBLICATIONS = [
+  {
+    title:
+      'Miracle fruit, a potential taste-modifier to improve food preferences: a review',
+    venue: 'Diyapaththugama et al. · Current Nutrition Reports 13, 867–883',
+    year: '2024',
+    href: 'https://doi.org/10.1007/s13668-024-00583-3',
+  },
+  {
+    title:
+      'Study on the thermal stability of the sweet-tasting protein brazzein based on its structure–sweetness relationship',
+    venue: 'Zuo et al. · Journal of Agricultural and Food Chemistry 72(13)',
+    year: '2024',
+    href: 'https://doi.org/10.1021/acs.jafc.3c09616',
+  },
   {
     title: 'Extraction yield optimisation of thaumatin from Thaumatococcus daniellii',
     venue: 'Journal name — replace with real citation',
@@ -246,10 +331,18 @@ const PUBLICATIONS = [
     href: '#',
   },
   {
-    title: 'Bioactive profiling of miracle berry (Synsepalum dulcificum) extracts',
-    venue: 'Journal name — replace with real citation',
+    title:
+      'Effect of regular consumption of a miraculin-based food supplement on taste perception and nutritional status in malnourished cancer patients (CLINMIR pilot)',
+    venue: 'López-Plaza et al. · Nutrients 15(21), 4639',
     year: '2023',
-    href: '#',
+    href: 'https://doi.org/10.3390/nu15214639',
+  },
+  {
+    title:
+      'Sweet-tasting natural proteins brazzein and monellin: safe sugar substitutes for the food industry',
+    venue: 'Novik et al. · Foods 12(22), 4065',
+    year: '2023',
+    href: 'https://doi.org/10.3390/foods12224065',
   },
   {
     title: 'Medicinal plants of West Africa: a review of extraction technologies',
@@ -914,6 +1007,8 @@ function App() {
                   <li key={pub.title}>
                     <a
                       href={pub.href}
+                      target={pub.href === '#' ? undefined : '_blank'}
+                      rel={pub.href === '#' ? undefined : 'noopener noreferrer'}
                       className="flex items-center gap-4 px-6 py-5 transition-colors hover:bg-stone-50"
                     >
                       <span className="text-sm font-semibold text-stone-400">
