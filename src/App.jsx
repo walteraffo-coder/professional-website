@@ -23,6 +23,7 @@ const NAV_LINKS = [
   { label: 'Quality', href: '#quality' },
   { label: 'About', href: '#about' },
   { label: 'Science', href: '#science' },
+  { label: 'Team', href: '#team' },
   { label: 'Contact', href: '#contact' },
 ]
 
