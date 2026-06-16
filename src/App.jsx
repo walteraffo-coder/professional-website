@@ -9,7 +9,6 @@ import { sendContactMessage, isContactConfigured } from './lib/contact'
 
 const COMPANY = {
   name: 'Farms & Extracts 46',
-  short: 'F&E 46',
   tagline: 'Ghanaian phytochemical extraction & natural products',
   email: 'affo@farmsandextracts.com',
   phone: '+233 53042 4351',
@@ -1338,7 +1337,7 @@ function App() {
           <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
-                About {COMPANY.short}
+                About {COMPANY.name}
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
                 Building West Africa&apos;s botanical value chain
