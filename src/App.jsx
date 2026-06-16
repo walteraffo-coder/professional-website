@@ -447,26 +447,21 @@ const QUALITY = [
   },
 ]
 
-// Academic credentials shown in the founder/science panel.
-const BACKGROUND = [
-  { label: 'PhD', value: 'Chemistry' },
-  { label: 'Specialism', value: 'Botanical extraction chemistry' },
-  { label: 'Model systems', value: 'S. dulcificum · T. daniellii' },
-]
-
 // Core leadership & field operations — shown as a two-column grid.
+// `links` references SOCIALS icons to render as anchor buttons on the card.
 const TEAM_CORE = [
   {
-    name: 'Dr. Walter Affo',
+    name: 'Dr. Walter Affo (PhD)',
     initials: 'WA',
-    title: 'Research & Development Lead / Key Principal',
+    title: 'Founder & Chief Scientific Officer',
     bio: 'Academic researcher and principal driving the technical, scientific and botanical framework of the enterprise. Oversees the strategic direction of plant-derived product development, academic publications and local integration in Ghana.',
+    links: ['linkedin', 'researchgate', 'scholar'],
   },
   {
     name: 'Amos Tuah',
     initials: 'AT',
     title: 'Botanical Sourcing & Field Operations Expert',
-    bio: 'A seasoned field researcher and supply specialist with several years of experience leading complex field expeditions. He specialises in documenting, mapping and collecting plant specimens across diverse ecosystems, overseeing local sourcing and sustainable supply chains within Ghana.',
+    bio: 'A seasoned field researcher and supply specialist with several years of experience managing regional agricultural supply lines.',
   },
 ]
 
@@ -1423,61 +1418,6 @@ function App() {
               </p>
             </div>
 
-            {/* Founder panel */}
-            <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-brand-100 bg-white p-8 shadow-sm">
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-lg font-bold text-white">
-                    PhD
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-stone-900">
-                      Dr Walter Affo
-                    </h3>
-                    <p className="text-sm text-stone-600">
-                      Founder · Chemist (PhD) &amp; Biotechnology Entrepreneur
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  {SOCIALS.filter((s) =>
-                    ['orcid', 'researchgate', 'scholar', 'linkedin'].includes(
-                      s.icon,
-                    ),
-                  ).map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={social.name}
-                      title={social.name}
-                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-200 bg-white text-brand-700 transition-colors hover:bg-brand-600 hover:text-white"
-                    >
-                      <SocialIcon name={social.icon} />
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <p className="mt-6 border-t border-stone-100 pt-6 text-sm leading-relaxed text-stone-600">
-                {COMPANY.short} was founded by Dr Walter Affo, whose doctoral and
-                ongoing research focuses on the extraction chemistry of West
-                African medicinal plants — notably the sweet protein thaumatin
-                and the taste-modifying miracle berry. That scientific foundation
-                shapes how the company develops every process and product.
-              </p>
-              <dl className="mt-6 grid gap-4 border-t border-stone-100 pt-6 sm:grid-cols-3">
-                {BACKGROUND.map((item) => (
-                  <div key={item.label}>
-                    <dt className="text-xs font-semibold uppercase tracking-wider text-brand-700">
-                      {item.label}
-                    </dt>
-                    <dd className="mt-1 text-sm text-stone-700">{item.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
             {/* Publications */}
             <div className="mx-auto mt-10 max-w-4xl">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-500">
@@ -1560,6 +1500,27 @@ function App() {
                     <p className="mt-5 text-sm leading-relaxed text-stone-600">
                       {member.bio}
                     </p>
+                    {member.links && (
+                      <div className="mt-5 flex gap-2 border-t border-stone-100 pt-5">
+                        {member.links.map((iconKey) => {
+                          const social = SOCIALS.find((s) => s.icon === iconKey)
+                          if (!social) return null
+                          return (
+                            <a
+                              key={iconKey}
+                              href={social.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={social.name}
+                              title={social.name}
+                              className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-200 bg-white text-brand-700 transition-colors hover:bg-brand-600 hover:text-white"
+                            >
+                              <SocialIcon name={social.icon} />
+                            </a>
+                          )
+                        })}
+                      </div>
+                    )}
                   </article>
                 ))}
               </div>
