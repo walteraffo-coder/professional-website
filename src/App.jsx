@@ -970,10 +970,10 @@ function App() {
         >
           <div className="mx-auto max-w-6xl px-6">
             <div className="mx-auto max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">
+              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
                 Bulk supply
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">
                 Available Raw Bulk Inventory
               </h2>
               <p className="mt-4 text-stone-600">
@@ -984,10 +984,10 @@ function App() {
             </div>
 
             {/* Table — tablet and desktop */}
-            <div className="mt-12 hidden overflow-hidden rounded-2xl border border-stone-200 shadow-sm md:block">
+            <div className="mt-12 hidden overflow-hidden rounded-2xl border border-emerald-200 shadow-sm md:block">
               <table className="w-full border-collapse text-left text-sm">
                 <thead>
-                  <tr className="bg-stone-100 text-xs font-semibold uppercase tracking-wider text-stone-500">
+                  <tr className="border-b-2 border-emerald-200 bg-emerald-50 text-xs font-semibold uppercase tracking-wider text-emerald-800">
                     <th scope="col" className="px-6 py-4">
                       Botanical name
                     </th>
@@ -1012,14 +1012,14 @@ function App() {
                     >
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium italic text-stone-900"
+                        className="px-6 py-4 font-medium italic text-emerald-800"
                       >
                         {item.name}
                       </th>
                       <td className="px-6 py-4 text-stone-700">
                         <span>{item.common}</span>
                         {item.flag && (
-                          <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                          <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
                             <svg
                               className="h-3 w-3"
                               viewBox="0 0 20 20"
@@ -1056,7 +1056,7 @@ function App() {
                   className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-base font-semibold italic text-stone-900">
+                    <h3 className="text-base font-semibold italic text-emerald-800">
                       {item.name}
                     </h3>
                     <span className="shrink-0 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700">
@@ -1065,7 +1065,7 @@ function App() {
                   </div>
                   <p className="mt-1 text-sm text-stone-500">{item.common}</p>
                   {item.flag && (
-                    <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                    <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
                       <svg
                         className="h-3 w-3"
                         viewBox="0 0 20 20"
