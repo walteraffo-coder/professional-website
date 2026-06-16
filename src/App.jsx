@@ -108,6 +108,12 @@ const PRODUCTS = [
     source: 'Voacanga africana (Wild Frangipani)',
     tag: 'Raw material',
     status: 'Available for bulk enquiry',
+    photos: [
+      { src: '/images/ibogaine-hydrochloride.jpeg', alt: 'Ibogaine hydrochloride', caption: 'Ibogaine hydrochloride' },
+      { src: '/images/voacangine.jpeg', alt: 'Voacangine', caption: 'Voacangine' },
+      { src: '/images/voacanga-fruits.jpeg', alt: 'Voacanga africana fruits', caption: 'Voacanga fruits' },
+      { src: '/images/voacanga-seeds.jpeg', alt: 'Voacanga africana seeds', caption: 'Voacanga seeds' },
+    ],
     body: [
       'Voacanga africana is a West African tree with significant pharmaceutical value, yielding two distinct high-value alkaloid fractions from different plant parts.',
       {
