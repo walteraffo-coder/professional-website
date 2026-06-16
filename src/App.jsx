@@ -500,8 +500,10 @@ const PUBLICATIONS = [
     href: 'https://doi.org/10.3390/foods12224065',
   },
   {
-    title: 'Medicinal plants of West Africa: a review of extraction technologies',
-    venue: 'Review venue — replace with real citation',
+    title:
+      'Extraction technologies for medicinal and aromatic plants: selection, characterisation and industrial scaling',
+    venue:
+      'UNIDO & International Centre for Science and High Technology · UNIDO Reference Study Archive, Sectoral Volume 4, 82–115',
     year: '2022',
     href: '#',
   },
