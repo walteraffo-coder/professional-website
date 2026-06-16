@@ -107,7 +107,25 @@ const PRODUCTS = [
     source: 'Thaumatococcus daniellii (Asowa)',
     tag: 'Bulk extract',
     status: 'Available',
-    body: 'Thaumatin is a natural sweet protein extracted from the fruit aril of Thaumatococcus daniellii. At approximately 2,000 times sweeter than sugar, it is one of the most potent natural sweeteners known.',
+    body: [
+      'Thaumatin is an ultra-high-intensity, low-glycaemic natural sweetening protein extracted from the fruit aril of Thaumatococcus daniellii (Asowa, also known as katemfe). At up to 2,000–3,000 times sweeter than sucrose, it is among the most potent natural sweeteners known — yet contributes negligible calories and has minimal impact on blood glucose.',
+      {
+        heading: 'Multi-functional sensory profile',
+        text: 'Beyond sweetness, thaumatin is a highly versatile sensory ingredient that works at parts-per-million levels: it acts as a potent masking agent for bitterness and off-notes, a flavour modifier that lifts and rounds existing profiles, and a mouthfeel enhancer that restores body lost when sugar or fat is removed.',
+      },
+      {
+        heading: 'Thermal & chemical stability',
+        text: 'A rigid molecular architecture — 16 conserved cysteine residues forming 8 internal disulfide bonds — gives thaumatin exceptional thermal and chemical stability. It withstands heat and pH extremes that denature most other sweet proteins, making it well suited to industrial baking and other hot-processed applications.',
+      },
+      {
+        heading: 'Sodium & MSG reduction',
+        text: 'In savoury formulations thaumatin dramatically lowers the monosodium glutamate (MSG) required to achieve a target umami intensity, and it masks the sharp metallic aftertaste of potassium chloride (KCl) — a key enabler for clean-label, low-sodium reformulation.',
+      },
+      {
+        heading: 'Industrial production',
+        text: 'To overcome the supply constraints of wild katemfe fruit, production is shifting toward precision fermentation platforms using microbial hosts such as Pichia pastoris and Saccharomyces cerevisiae, providing a scalable, consistent and animal-free route to food-grade thaumatin.',
+      },
+    ],
     applications: [
       'Dairy and non-dairy products',
       'Confectionery — hard candies, chocolates, and gummies (enhances mint, berry, and citrus flavours)',
@@ -325,12 +343,6 @@ const PUBLICATIONS = [
     href: 'https://doi.org/10.1021/acs.jafc.3c09616',
   },
   {
-    title: 'Extraction yield optimisation of thaumatin from Thaumatococcus daniellii',
-    venue: 'Journal name — replace with real citation',
-    year: '2024',
-    href: '#',
-  },
-  {
     title:
       'Effect of regular consumption of a miraculin-based food supplement on taste perception and nutritional status in malnourished cancer patients (CLINMIR pilot)',
     venue: 'López-Plaza et al. · Nutrients 15(21), 4639',
@@ -349,6 +361,26 @@ const PUBLICATIONS = [
     venue: 'Review venue — replace with real citation',
     year: '2022',
     href: '#',
+  },
+  {
+    title: 'Re-evaluation of thaumatin (E 957) as a food additive',
+    venue: 'European Food Safety Authority · EFSA Journal 19(11), 6884',
+    year: '2021',
+    href: 'https://doi.org/10.2903/j.efsa.2021.6884',
+  },
+  {
+    title:
+      'Effect of transgenesis on mRNA and miRNA profiles in cucumber fruits expressing thaumatin II',
+    venue: 'Pawełkowicz et al. · Genes 11(3), 334',
+    year: '2020',
+    href: 'https://doi.org/10.3390/genes11030334',
+  },
+  {
+    title:
+      'Recombinant thaumatin II in Nicotiana plants — sweetener & flavour-modifier GRAS status (GRN 910 & 920)',
+    venue: 'US Food and Drug Administration · GRAS Notice Inventory',
+    year: '2020',
+    href: 'https://www.fda.gov/food/gras-notice-inventory',
   },
 ]
 
