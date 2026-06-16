@@ -152,18 +152,26 @@ const PRODUCTS = [
       { src: '/images/voacanga-seeds.jpeg', alt: 'Voacanga africana seeds', caption: 'Voacanga seeds' },
     ],
     body: [
-      'Voacanga africana is a West African tree with significant pharmaceutical value, yielding two distinct high-value alkaloid fractions from different plant parts.',
+      'Voacanga africana is a premier industrial botanical powerhouse whose root bark and seeds serve as abundant, sustainable natural scaffolds for high-value pharmaceutical semi-synthesis, yielding two distinct alkaloid fractions from different plant parts.',
       {
-        heading: 'Seeds — Tabersonine',
-        text: 'The seeds are rich in tabersonine, a key starting material in the synthesis of vincamine and vinpocetine — compounds widely used to support cerebral blood flow and cognitive function, with applications in nootropics and memory-support formulations.',
+        heading: 'Root bark — voacangine → ibogaine',
+        text: 'The root and stem bark are the source of voacangine, the primary global precursor for the semi-synthesis of ibogaine hydrochloride (ibogaine HCl). This route is an ecologically viable, scalable alternative to direct extraction, preventing the over-harvesting of the endangered Tabernanthe iboga.',
       },
       {
-        heading: 'Root Bark — Voacangine',
-        text: 'The root bark contains voacangine, a structural precursor to ibogaine — a clinically investigated compound for addiction interruption, particularly for opioid and stimulant dependency.',
+        heading: 'Conversion chemistry',
+        text: 'Voacangine is converted to ibogaine by base-catalysed saponification to a voacangic acid intermediate, followed by thermal, acid-catalysed decarboxylation that removes the C-16 carbomethoxy group to yield highly pure, clinical-grade ibogaine. Yields are further multiplied by acid-mediated cleavage of the major bark dimers — voacamine and voacamidine — releasing additional monomeric voacangine.',
+      },
+      {
+        heading: 'Seeds — tabersonine → vinpocetine',
+        text: 'The seeds are the near-exclusive source of tabersonine, the industrial starting material for the commercial synthesis of vincamine and, subsequently, vinpocetine (ethyl apovincaminate).',
+      },
+      {
+        heading: 'Vinpocetine — clinical applications',
+        text: 'Vinpocetine is a potent neuroprotective and nootropic agent used to optimise cerebral blood flow, support recovery from acute ischaemic stroke, selectively inhibit PDE1A, and mitigate age-related cognitive decline.',
       },
     ],
     applications:
-      'Pharmaceutical synthesis, nootropic ingredient supply, addiction treatment research, alkaloid extraction.',
+      'Ibogaine semi-synthesis, vinpocetine and vincamine manufacture, nootropic ingredient supply, addiction-treatment research, pharmaceutical alkaloid extraction.',
     supplyForm: 'Dried seeds, root bark, crude alkaloid extract.',
   },
   {
@@ -411,6 +419,13 @@ const PUBLICATIONS = [
   },
   {
     title:
+      'Efficient access to the iboga skeleton: optimised procedure to obtain voacangine from Voacanga africana root bark',
+    venue: 'Pérez-Tuells et al. · ACS Omega 6(26), 17054–17061',
+    year: '2021',
+    href: 'https://doi.org/10.1021/acsomega.1c02113',
+  },
+  {
+    title:
       'Effect of transgenesis on mRNA and miRNA profiles in cucumber fruits expressing thaumatin II',
     venue: 'Pawełkowicz et al. · Genes 11(3), 334',
     year: '2020',
@@ -422,6 +437,19 @@ const PUBLICATIONS = [
     venue: 'US Food and Drug Administration · GRAS Notice Inventory',
     year: '2020',
     href: 'https://www.fda.gov/food/gras-notice-inventory',
+  },
+  {
+    title: 'Cytotoxic active ingredients from the seeds of Voacanga africana',
+    venue: 'Li et al. · South African Journal of Botany 137, 1–9',
+    year: '2020',
+    href: 'https://doi.org/10.1016/j.sajb.2020.09.026',
+  },
+  {
+    title:
+      'Industrial manufacturing of vinpocetine via tabersonine intermediates extracted from West African Voacanga seeds',
+    venue: 'Covex S.A. · Spain Patent No. ES 549.105',
+    year: 'Patent',
+    href: '#',
   },
 ]
 
