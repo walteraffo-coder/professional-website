@@ -175,7 +175,27 @@ const PRODUCTS = [
       { src: '/images/griffonia-seeds.jpeg', alt: 'Griffonia simplicifolia seeds', caption: 'Griffonia seeds' },
       { src: '/images/griffonia-fruits.jpeg', alt: 'Griffonia simplicifolia fruits', caption: 'Griffonia fruits' },
     ],
-    body: 'Griffonia simplicifolia seeds are a natural source of (L)-5-Hydroxytryptophan (5-HTP), a direct serotonin precursor. Extracted and purified for dietary supplements targeting depression, anxiety, fibromyalgia, insomnia, and weight management.',
+    body: [
+      'Griffonia simplicifolia seeds are a premier neurological botanical and the natural source of (L)-5-Hydroxytryptophan (5-HTP) — the immediate, direct chemical precursor to the neurotransmitter serotonin (5-HT) and, downstream, to the circadian hormone melatonin.',
+      {
+        heading: 'Metabolic advantage',
+        text: 'Unlike L-tryptophan, 5-HTP crosses the blood-brain barrier without competing for an active molecular transporter, and it bypasses tryptophan hydroxylase — the rate-limiting enzyme of serotonin synthesis — entirely. This allows it to elevate central nervous system serotonin efficiently and reliably.',
+      },
+      {
+        heading: 'Health applications',
+        text: 'These properties underpin a broad, multi-functional health profile: natural support for mood regulation (anxiety and depression), improved sleep architecture (deepening REM sleep cycles), appetite and satiety control to support weight management, and the mitigation of central pain sensitisation in conditions such as migraine and fibromyalgia.',
+      },
+      {
+        heading: 'Emerging pharmaceutical research',
+        text: 'Recent research is expanding into the plant-derived immunomodulatory properties of Griffonia extracts — notably using high-power ultrasonic extraction techniques to concentrate active fractions targeting localised tissue inflammation.',
+      },
+      {
+        heading: 'Sustainable supply chain',
+        text: 'West African wildcrafted seed harvesting — across Ghana, Côte d’Ivoire and Liberia — is the exclusive global commercial source of raw material for value-added 5-HTP isolation, placing responsible sourcing at the centre of the supply chain.',
+      },
+    ],
+    applications:
+      'Mood and stress support, sleep and melatonin support, appetite/weight management, pain-modulation formulations, nutraceuticals and dietary supplements.',
   },
   {
     name: 'Pentadiplandra brazzeana',
@@ -330,6 +350,20 @@ const BACKGROUND = [
 const PUBLICATIONS = [
   {
     title:
+      'Griffonia simplicifolia seed extract rich in 5-hydroxy-L-tryptophan reduces infection and inflammation in a mouse model of vulvovaginal candidiasis',
+    venue: 'Puccetti et al. · Journal of Pharmacy and Pharmacology 77(7), 933–943',
+    year: '2026',
+    href: '#',
+  },
+  {
+    title:
+      'The effect of Griffonia simplicifolia on pain intensity, central and peripheral sensitisation, and pain modulation',
+    venue: 'ClinicalTrials.gov · trial protocol NCT06893822',
+    year: '2025',
+    href: 'https://clinicaltrials.gov/study/NCT06893822',
+  },
+  {
+    title:
       'Miracle fruit, a potential taste-modifier to improve food preferences: a review',
     venue: 'Diyapaththugama et al. · Current Nutrition Reports 13, 867–883',
     year: '2024',
@@ -367,6 +401,13 @@ const PUBLICATIONS = [
     venue: 'European Food Safety Authority · EFSA Journal 19(11), 6884',
     year: '2021',
     href: 'https://doi.org/10.2903/j.efsa.2021.6884',
+  },
+  {
+    title:
+      'From forest to pharmacy: should we be depressed about a sustainable Griffonia simplicifolia (Fabaceae) seed supply chain?',
+    venue: 'Cunningham et al. · Journal of Ethnopharmacology 277, 114202',
+    year: '2021',
+    href: 'https://doi.org/10.1016/j.jep.2021.114202',
   },
   {
     title:
