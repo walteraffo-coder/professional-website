@@ -17,6 +17,22 @@
     <title>Farms &amp; Extracts 46 — Ghanaian Phytochemical Extraction &amp; Natural Products</title>
   </head>
   <body>
+    <!--
+      Static form for Netlify build-time form detection. The live contact form
+      is rendered by React and never exists in static HTML, so Netlify's
+      crawler can only discover the form (and its fields) through this hidden
+      copy. Field names MUST match the React form in src/App.jsx.
+    -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <select name="intended_recipient"></select>
+      <select name="enquiry"></select>
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

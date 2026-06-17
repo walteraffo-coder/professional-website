@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { sendContactMessage, isContactConfigured } from './lib/contact'
 
 // ---------------------------------------------------------------------------
 // Site content. Everything a non-developer might want to edit lives in these
@@ -658,6 +657,10 @@ const PUBLICATIONS = [
   },
 ]
 
+// Departments a client can route their enquiry to — surfaced as the contact
+// form's "intended_recipient" dropdown.
+const RECIPIENTS = ['General', 'Chemistry', 'Operations']
+
 // Reasons an enquiry might come in — drives the contact form's subject line.
 const ENQUIRY_TYPES = [
   'Buy bulk extracts',
@@ -860,17 +863,33 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form).entries())
+    // Netlify Forms expects a URL-encoded POST to any path on the site; the
+    // `form-name` field (included in the form) tells Netlify which form it is.
+    const data = new FormData(form)
 
     setStatus('submitting')
     setErrorMessage('')
 
     try {
-      await sendContactMessage(data)
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+      if (!response.ok) {
+        throw new Error(
+          `Sorry, your enquiry could not be sent (error ${response.status}). Please try again, or email us directly.`,
+        )
+      }
       setStatus('success')
       form.reset()
     } catch (err) {
-      setErrorMessage(err.message)
+      // A TypeError from fetch means the request never reached the server.
+      const message =
+        err instanceof TypeError
+          ? 'Could not reach the server. Please check your connection and try again.'
+          : err.message
+      setErrorMessage(message)
       setStatus('error')
     }
   }
@@ -1688,20 +1707,24 @@ function App() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {!isContactConfigured && (
-                    <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
-                      Heads up: the form isn&apos;t connected to an email
-                      service yet. Add your Formspree endpoint to{' '}
-                      <code className="font-mono">.env.local</code> and restart
-                      the dev server.
-                    </p>
-                  )}
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value={`New enquiry — ${COMPANY.name} website`}
-                  />
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
+                  {/* Netlify Forms wiring: form-name must match the form's
+                      name attribute and the hidden form in index.html. */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  {/* Honeypot — hidden from people, catches spam bots. */}
+                  <p className="hidden">
+                    <label>
+                      Don&apos;t fill this out if you&apos;re human:{' '}
+                      <input name="bot-field" />
+                    </label>
+                  </p>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label
@@ -1747,6 +1770,29 @@ function App() {
                       required
                       className="mt-1.5 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
                     />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="intended_recipient"
+                      className="block text-sm font-medium text-stone-700"
+                    >
+                      Who would you like to contact?
+                    </label>
+                    <select
+                      id="intended_recipient"
+                      name="intended_recipient"
+                      defaultValue=""
+                      className="mt-1.5 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                    >
+                      <option value="" disabled>
+                        Select a department…
+                      </option>
+                      {RECIPIENTS.map((recipient) => (
+                        <option key={recipient} value={recipient}>
+                          {recipient}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div>
                     <label
