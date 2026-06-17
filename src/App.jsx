@@ -791,6 +791,8 @@ function App() {
   // 'idle' | 'submitting' | 'success' | 'error'
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  // URL of the product image shown in the lightbox, or null when closed.
+  const [selectedImg, setSelectedImg] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -1007,7 +1009,8 @@ function App() {
                               src={image.src}
                               alt={image.alt}
                               loading="lazy"
-                              className="h-24 w-full object-cover"
+                              onClick={() => setSelectedImg(image.src)}
+                              className="h-24 w-full cursor-zoom-in object-cover transition-opacity hover:opacity-90"
                             />
                             <figcaption className="px-2 py-1.5 text-center text-xs text-stone-500">
                               {image.caption ?? image.alt}
@@ -1020,7 +1023,8 @@ function App() {
                         src={product.photo}
                         alt={product.photoAlt ?? product.name}
                         loading="lazy"
-                        className="-mx-7 -mt-7 mb-6 h-48 w-full rounded-t-2xl object-cover"
+                        onClick={() => setSelectedImg(product.photo)}
+                        className="-mx-7 -mt-7 mb-6 h-48 w-full cursor-zoom-in rounded-t-2xl object-cover transition-opacity hover:opacity-90"
                       />
                     ) : null}
                     <div className="flex items-start justify-between gap-3">
@@ -1794,6 +1798,32 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Image lightbox */}
+      {selectedImg && (
+        <div
+          onClick={() => setSelectedImg(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged product image"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-sm sm:p-8"
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImg(null)}
+            aria-label="Close image"
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white transition-colors hover:bg-white/20"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+          <img
+            src={selectedImg}
+            alt=""
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   )
 }
