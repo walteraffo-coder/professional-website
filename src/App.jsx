@@ -257,6 +257,69 @@ const PRODUCTS = [
       'Facial serums, body butters, hair care, cleansers, nutraceuticals, pharmaceutical ingredient supply.',
   },
   {
+    name: 'Bixin (Bixa orellana)',
+    source: 'Bixa orellana (Annatto)',
+    tag: 'Natural colorant',
+    status: 'Available',
+    photos: [
+      { src: '/images/annato.jpeg', alt: 'Bixa orellana (Annatto) fruit', caption: 'Annatto' },
+      { src: '/images/annato-seeds.jpeg', alt: 'Bixa orellana (Annatto) seeds', caption: 'Annatto seeds' },
+    ],
+    body: 'Bixa orellana (Annatto) seeds extract contain a natural food colorant (Bixin). Several orange and yellow manufactured foods are colored with the Annatto colorant. These include but are not limited to cheeses, ice creams, yogurts, margarines, cereals, salad dressings, crackers, snack foods and baked goods.',
+    applications:
+      'Natural orange-yellow food colorant for cheeses, ice creams, yoghurts, margarines, cereals, salad dressings, crackers, snack foods and baked goods.',
+  },
+  {
+    name: 'Caesalpinia benthamiana',
+    source: 'West African medicinal plants',
+    tag: 'Premium Aphrodisiac',
+    status: 'Available',
+    photos: [
+      { src: '/images/ekow-bowere.jpeg', alt: 'Caesalpinia benthamiana plant', caption: 'Ekow Bowere plant' },
+      { src: '/images/ekow-bowere-roots.jpeg', alt: 'Caesalpinia benthamiana roots', caption: 'Premium root extract material' },
+    ],
+    body: "Commonly known as Ekow Bowere in Fante (and 'Tiger's Claw' due to its distinct thorns), Caesalpinia benthamiana is a prized West African climbing shrub. Ethnomedical and pharmacological studies confirm that its root extracts possess potent vasorelaxant and antioxidant properties, heavily utilized in traditional formulations as a natural aphrodisiac and performance stimulant.",
+    applications:
+      'Premium root extracts formulated for natural vitality, circulation support, and traditional aphrodisiac specifications.',
+  },
+  {
+    name: 'Irvingia gabonensis (African wild mango)',
+    source: 'West African medicinal plants',
+    tag: 'Metabolic Support',
+    status: 'Available',
+    photos: [
+      { src: '/images/irvingia-gabonensis.jpeg', alt: 'Irvingia gabonensis fruit', caption: 'African wild mango' },
+    ],
+    body: 'Native to West Africa, Irvingia gabonensis is highly valued for its dense, nutrient-rich seeds. Modern clinical research indicates that its seed extracts effectively modulate key metabolic markers, regulating appetite-linked hormones (leptin and adiponectin) while promoting glycemic and lipid control.',
+    applications:
+      'Premium standardized seed extracts for metabolic health, natural weight management formulations, and dietary fiber optimization.',
+  },
+  {
+    name: 'Picralima nitida (Akuamma)',
+    source: 'West African medicinal plants',
+    tag: 'Natural Analgesic',
+    status: 'Available',
+    photos: [
+      { src: '/images/picralima-nitida.jpeg', alt: 'Picralima nitida fruit', caption: 'Akuamma fruit' },
+      { src: '/images/picralima-nitida-seeds.jpeg', alt: 'Picralima nitida seeds', caption: 'Premium Akuamma seeds' },
+    ],
+    body: 'Commonly known as Akuamma, Picralima nitida is a critical pillar of traditional West African medicine. Extensive pharmacological research verifies that its seeds are highly rich in specialized indole alkaloids, primarily akuammine, which demonstrate powerful clinical efficacy as natural anti-inflammatory, antipyretic, and analgesic agents.',
+    applications:
+      'Standardized Akuamma seed powders and extracts processed to specification for natural pain management and therapeutic formulations.',
+  },
+  {
+    name: 'Tetrapleura tetraptera (Prekese)',
+    source: 'West African medicinal plants',
+    tag: 'Cardiovascular & Metabolic Health',
+    status: 'Available',
+    photos: [
+      { src: '/images/prekese.jpeg', alt: 'Tetrapleura tetraptera fruit', caption: 'Prekese fruit pods' },
+    ],
+    body: 'Famously known as Prekese in Ghana, Tetrapleura tetraptera is highly sought after for its exceptional medicinal profile. Rich in triterpenoid saponins (aridanin), flavonoids, and essential macro-minerals, scientific studies confirm its significant therapeutic efficacy in blood pressure control, glycemic regulation, and system-wide anti-inflammatory support.',
+    applications:
+      'Premium standardized fruit pod extracts processed to client specifications for nutraceutical formulations, therapeutic tonics, and functional dietary supplements.',
+  },
+  {
     name: 'Custom Botanical Extracts',
     source: 'West African medicinal plants',
     tag: 'Made to order',
