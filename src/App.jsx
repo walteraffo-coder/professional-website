@@ -1083,27 +1083,9 @@ function App() {
                   }${product.sideImages ? ' flex-col md:flex-row' : ' flex-col'}`}
                 >
                   <div className="flex min-w-0 flex-1 flex-col p-7">
-                    {product.photo ? (
-            <img
-              src={product.photo}
-              alt={product.photoAlt ?? product.name}
-              loading="lazy"
-              onClick={() => setSelectedImg(product.photo)}
-              className="-mx-7 -mt-7 mb-6 h-48 w-full cursor-zoom-in rounded-t-2xl object-cover transition-opacity hover:opacity-90"
-            />
-          ) : product.photos && product.photos.length > 0 ? (
-            <img
-              src={product.photos[0].src}
-              alt={product.photos[0].alt ?? product.name}
-              loading="lazy"
-              onClick={() => setSelectedImg(product.photos[0].src)}
-              className="-mx-7 -mt-7 mb-6 h-48 w-full cursor-zoom-in rounded-t-2xl object-cover transition-opacity hover:opacity-90"
-            />
-          ) : null}
-
-          {/*_Old_Gallery_Block_Moved_*/ product.photos ? (
+                    {product.photos ? (
                       <div className="-mx-7 -mt-7 mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-t-2xl bg-stone-200">
-                        {product.photos.slice(1).map((image) => (
+                        {product.photos.map((image) => (
                           <figure key={image.src} className="bg-white">
                             <img
                               src={image.src}
@@ -1118,6 +1100,14 @@ function App() {
                           </figure>
                         ))}
                       </div>
+                    ) : product.photo ? (
+                      <img
+                        src={product.photo}
+                        alt={product.photoAlt ?? product.name}
+                        loading="lazy"
+                        onClick={() => setSelectedImg(product.photo)}
+                        className="-mx-7 -mt-7 mb-6 h-48 w-full cursor-zoom-in rounded-t-2xl object-cover transition-opacity hover:opacity-90"
+                      />
                     ) : null}
                     <div className="flex items-start justify-between gap-3">
                       <div>
