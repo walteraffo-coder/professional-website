@@ -272,12 +272,6 @@ const TEAM_ADVISORS = [
     bio: 'A chemist and researcher globally recognised for his work in the extraction, purification and analysis of therapeutic plant compounds. His published procedures provide methods for producing consistent isolates from iboga and Voacanga bark.',
   },
   {
-    name: 'Simeon Schnapper',
-    initials: 'SS',
-    title: 'Venture & Investment Advisor',
-    bio: 'An experienced venture capitalist, impact investor and advisor specialising in early-stage emerging technologies, digital assets and botanical sectors. He guides the business model’s scalability and investment readiness.',
-  },
-  {
     name: 'Robert Gordon',
     initials: 'RG',
     title: 'Legal & Operational Advisor',
