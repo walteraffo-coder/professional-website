@@ -269,7 +269,7 @@ const TEAM_ADVISORS = [
     name: 'Dr. Chris Jenks',
     initials: 'CJ',
     title: 'Scientific & Chemical Advisor',
-    bio: 'A chemist and researcher globally recognised for his work in the extraction, purification and therapeutic plant compounds. His published procedures provide methods for producing consistent isolates from iboga and Voacanga bark.',
+    bio: 'A chemist and researcher globally recognised for his work in the extraction, purification and analysis of therapeutic plant compounds. His published procedures provide methods for producing consistent isolates from iboga and Voacanga bark.',
   },
   {
     name: 'Simeon Schnapper',
