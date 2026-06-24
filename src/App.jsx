@@ -1418,21 +1418,6 @@ function App() {
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 font-medium text-stone-900">
-                    WhatsApp
-                  </dt>
-                  <dd>
-                    <a
-                      href={`https://wa.me/${COMPANY.whatsapp.replace(/\D/g, '')}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-brand-700 hover:text-brand-600"
-                    >
-                      {COMPANY.whatsapp}
-                    </a>
-                  </dd>
-                </div>
-                <div className="flex gap-3">
-                  <dt className="w-24 shrink-0 font-medium text-stone-900">
                     Address
                   </dt>
                   <dd className="text-stone-600">
