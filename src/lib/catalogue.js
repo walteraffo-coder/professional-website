@@ -4,7 +4,7 @@
 
 export const PRODUCTS = [
   {
-    name: 'Miracle Berry Extract',
+    name: 'Miracle Berry (Asowa)',
     source: 'Synsepalum dulcificum',
     tag: 'Bulk extract',
     status: 'Available',
@@ -43,11 +43,11 @@ export const PRODUCTS = [
   },
   {
     name: 'Thaumatin',
-    source: 'Thaumatococcus daniellii (Asowa)',
+    source: 'Thaumatococcus daniellii (Anga)',
     tag: 'Bulk extract',
     status: 'Available',
     body: [
-      'Thaumatin is an ultra-high-intensity, low-glycaemic natural sweetening protein extracted from the fruit aril of Thaumatococcus daniellii (Asowa, also known as katemfe). At up to 2,000–3,000 times sweeter than sucrose, it is among the most potent natural sweeteners known — yet contributes negligible calories and has minimal impact on blood glucose.',
+      'Thaumatin is an ultra-high-intensity, low-glycaemic natural sweetening protein extracted from the fruit aril of Thaumatococcus daniellii (Anga, also known as katemfe). At up to 2,000–3,000 times sweeter than sucrose, it is among the most potent natural sweeteners known — yet contributes negligible calories and has minimal impact on blood glucose.',
       {
         heading: 'Multi-functional sensory profile',
         text: 'Beyond sweetness, thaumatin is a highly versatile sensory ingredient that works at parts-per-million levels: it acts as a potent masking agent for bitterness and off-notes, a flavour modifier that lifts and rounds existing profiles, and a mouthfeel enhancer that restores body lost when sugar or fat is removed.',
@@ -73,10 +73,10 @@ export const PRODUCTS = [
       'Masks astringency and bitterness in low-fat yoghurt and soya-based desserts',
     ],
     photos: [
-      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested Asowa (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
-      { src: '/images/t-danielli-arils.jpeg', alt: 'Asowa arils', caption: 'Arils' },
-      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Asowa seed with aril', caption: 'Seed with aril' },
-      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Asowa seed (black) and aril (white)', caption: 'Seed & aril, separated' },
+      { src: '/images/t-danielli-fruits.jpeg', alt: 'Freshly harvested Anga (Thaumatococcus daniellii) fruits', caption: 'Whole fruits' },
+      { src: '/images/t-danielli-arils.jpeg', alt: 'Anga arils', caption: 'Arils' },
+      { src: '/images/t-danielli-seed-with-aril.jpeg', alt: 'Anga seed with aril', caption: 'Seed with aril' },
+      { src: '/images/t-danielli-seed-black-and-aril-white.jpeg', alt: 'Anga seed (black) and aril (white)', caption: 'Seed & aril, separated' },
     ],
   },
   {
