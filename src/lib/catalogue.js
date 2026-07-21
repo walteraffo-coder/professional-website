@@ -259,6 +259,48 @@ export const PRODUCTS = [
       'Premium standardized fruit pod extracts processed to client specifications for nutraceutical formulations, therapeutic tonics, and functional dietary supplements.',
   },
   {
+    name: 'Desmodium adscendens',
+    source: 'Desmodium adscendens (Asoma)',
+    tag: 'Wild-harvested leaves',
+    status: 'Available',
+    body: [
+      'Native to the undisturbed forest belts of West Africa, Desmodium adscendens — known in Ghana as Asoma — is one of the region’s most valued protective botanicals. Prized in both traditional African medicine and modern European phytotherapy, it is celebrated for its hepatoprotective (liver-defending) and bronchodilating properties. Farms & Extracts 46 supplies ethically wild-crafted, fully traceable Desmodium adscendens leaves, processed for industrial extraction, tincture formulation and herbal encapsulation.',
+      {
+        heading: 'Hepatoprotective excellence',
+        text: 'Rich concentrations of soyasaponins, flavonoids and alkaloids support liver cell regeneration, protect hepatocyte membranes and assist normal hepatic enzyme recovery.',
+      },
+      {
+        heading: 'Respiratory & anti-anaphylactic support',
+        text: 'The leaf naturally modulates smooth-muscle contraction in the bronchial tract, making it a preferred ingredient in respiratory care and anti-allergy formulations.',
+      },
+      {
+        heading: 'Antioxidant & free-radical scavenging',
+        text: 'A high phenolic content helps neutralise oxidative stress and supports healthy systemic inflammation responses.',
+      },
+      {
+        heading: 'Sustainable wild harvesting',
+        text: 'Leaves are harvested from certified wild forest blocks across Ghana in partnership with indigenous forest-collection communities, who pluck sustainably so roots and vines remain unharmed for continuous perennial regeneration.',
+      },
+      {
+        heading: 'Low-thermal curing & moisture control',
+        text: 'Raw leaves are sorted immediately post-harvest to remove organic impurities, then gently dried by low-thermal dehumidification to an optimal 10–12% moisture level — locking in active phytochemicals while preserving the natural green colour and aroma without heat degradation.',
+      },
+      {
+        heading: 'EU compliance & contaminant screening',
+        text: 'Every batch is screened against rigorous European safety standards for heavy metals, pesticide residues, pyrrolizidine alkaloids (PAs) and microbiological cleanliness.',
+      },
+    ],
+    applications: [
+      'Liquid extracts and tinctures',
+      'Nutraceutical capsules',
+      'Herbal teas and infusions',
+      'Liver-support and hepatoprotective formulations',
+      'Respiratory care and anti-allergy formulations',
+    ],
+    supplyForm:
+      'Dried leaves in coarse cut (1–3 cm), custom fine cut available. High-density breathable export bags, palletised on request.',
+  },
+  {
     name: 'Custom Botanical Extracts',
     source: 'West African medicinal plants',
     tag: 'Made to order',
