@@ -301,6 +301,20 @@ export const PRODUCTS = [
       'Dried leaves in coarse cut (1–3 cm), custom fine cut available. High-density breathable export bags, palletised on request.',
   },
   {
+    name: 'Chrysanthellum americanum (Ghanaian Wild-Harvested Aerial Parts)',
+    source: 'High-Purity Phytopharmaceutical Biomass for Vascular, Hepatic & Metabolic Wellness',
+    tag: 'Wild-harvested aerial parts',
+    status: 'Available',
+    body: [
+      {
+        heading: 'Bioactive compounds',
+        text: 'Flavonoids (marein, luteolin) and saponins (chrysanthellins A & B).',
+      },
+    ],
+    applications: ['Extract', 'Tinctures', 'Capsules'],
+    supplyForm: 'Coarse cut (1–3 cm). Moisture ≤ 10–12%. HS Code 1211.90.',
+  },
+  {
     name: 'Custom Botanical Extracts',
     source: 'West African medicinal plants',
     tag: 'Made to order',
